@@ -7,6 +7,7 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+
 #slide_1 {
   height: 100%;
 }
@@ -16,21 +17,14 @@
 }
 
 .header {
-  height: 9%;
+  height: auto;
   width: 100%;
   padding: 15px 10px;
   position: fixed;
   background-color: #ffffff00;
   z-index: 5;
-}
-
-.header .border-header {
-  border-bottom: 0.5px solid #ffffffc7;
-  position: fixed;
-  height: 5px;
-  width: 200%;
-  bottom: 92%;
-  left: -50%;
+  transition: background 0.2s linear 0s;
+  border-bottom: 1px solid rgba(204, 204, 204, 0.5);
 }
 
 #languege {
@@ -287,22 +281,26 @@
   border-color: rgba(0, 0, 0, 0.1);
 }
 
-#section_1 .container {
-  height: 100%;
+#section_1 {
   background-image: url("../images/pattern1.png");
   background-repeat: repeat;
 }
 
+#section_1 .container {
+  height: 100%;
+}
+
 #section_1 .row > .col-sm-6 {
   top: 50%;
-  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
   height: 33%;
   position: relative;
 }
 
 #section_1 .row > .video {
   border-radius: 5px;
-  box-shadow: 0 4px 15px 2px rgba(0,0,0,.25);
+  box-shadow: 0 4px 15px 2px rgba(0, 0, 0, 0.25);
 }
 
 #section_1 .row > .text {
@@ -314,37 +312,40 @@
   margin-bottom: 30px;
   font-weight: 700;
   color: #4c4c4c;
-  animation-delay: .5s;
+  -webkit-animation-delay: 0.5s;
+          animation-delay: 0.5s;
 }
 
 #section_1 .row > .col-sm-6 img {
-    border-radius: 5px;
-    width: 125%;
-    vertical-align: middle;
-    height: 125%;
-    position: absolute;
-    left: -25%;
+  border-radius: 5px;
+  width: 125%;
+  vertical-align: middle;
+  height: 125%;
+  position: absolute;
+  left: -25%;
 }
 
 #section_1 .content button {
   position: absolute;
-    top: 53%;
-    left: 38%;
-    background: #38b54e;
-    border-radius: 50%;
-    width: 80px;
-    height: 80px;
-    transform: translateX(-50%);
-    color: white;
-    transition: all .4s;
-    animation-delay: .8s;
+  top: 53%;
+  left: 38%;
+  background: #38b54e;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  color: white;
+  transition: all 0.4s;
+  -webkit-animation-delay: 0.8s;
+          animation-delay: 0.8s;
 }
 
 #section_1 .content .text p {
   line-height: 24px;
-  animation-delay: .6s;
+  -webkit-animation-delay: 0.6s;
+          animation-delay: 0.6s;
 }
-
 
 #section_1 .content button span#triangle-right {
   width: 0;
@@ -356,11 +357,12 @@
   position: absolute;
   top: 52%;
   left: 57%;
-  transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 
 #video {
-  background: rgba(0,0,0,.93);
+  background: rgba(0, 0, 0, 0.93);
   position: absolute;
   z-index: 9;
   height: 100vh;
@@ -374,7 +376,8 @@
   width: 67%;
   margin: 0 auto;
   top: 50%;
-  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
 }
 
 #video iframe {
@@ -399,4 +402,165 @@
   top: 50px;
   right: 100px;
   color: #fff;
+}
+
+.isNotFirstPage {
+  background-image: url("../images/pattern1.png");
+  background-repeat: repeat;
+  background-color: white;
+}
+
+.header .notFirstHeader {
+
+}
+
+.header .notFirstHeader a, .header .notFirstHeader button {
+  border-radius: 30px;
+  border: 0.5px solid #ffffff75;
+  font-size: 12px;
+  transition: all 0.3s;
+  color: rgb(56, 181, 78);
+  border-color: rgb(56, 181, 78);
+  width: 160px;
+  line-height: 30px;
+  background-color: transparent;
+}
+
+.header .notFirstHeader a:hover, .header .notFirstHeader button:hover {
+  background-color: green;
+  color: white;
+}
+
+.header .notFirstHeader a:focus, .header .notFirstHeader button:focus {
+  box-shadow: none;
+}
+
+.header .notFirstHeader .float-right {
+  height: 100%;
+  vertical-align: middle;
+  display: flex;
+}
+
+#section_2 {
+  background-image: url("../images/pattern1.png");
+  background-repeat: repeat;
+}
+
+#section_2 .row > div.col-sm-6 {
+  position: relative;
+}
+
+#section_2 .khoitrai {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#section_2 .khoitrai .khoitext {
+}
+
+#section_2 .khoitrai .khoitext h3 {
+  font-size: 22px;
+}
+
+#section_2 .khoitrai .khoitext > div {
+  border-radius: 5px;
+  padding: 10px 25px 15px;
+}
+
+#section_2 .khoitrai .khoitext:hover > div {
+  cursor: pointer;
+  box-shadow: 0 5px 20px rgba(0,0,0,.15);
+  border-radius: 5px;
+  transition: all .3s ease-in-out;
+  transform: translateY(-4px);
+}
+
+#section_2 .khoitrai .khoitext:nth-child(1) {
+  animation-delay: 0.5s;
+}
+
+#section_2 .khoitrai .khoitext:nth-child(2) {
+  animation-delay: 0.7s;
+}
+
+#section_2 .khoitrai .khoitext:nth-child(3) {
+  animation-delay: 0.9s;
+}
+
+#section_2 .containDeviceImage .preview2 img:nth-child(1) {
+  position: relative;
+}
+
+#section_2 .containDeviceImage .preview2 img:nth-child(2) {
+  position: absolute;
+  top: 20%;
+  left: 40%;
+  animation-delay: .2s;
+}
+
+#section_2 .containDeviceImage .preview2 img:nth-child(3) {
+  position: absolute;
+  top: 57%;
+  left: 40%;
+  animation-delay: .4s;
+}
+
+#section_2 .containDeviceImage .preview3 img:nth-child(1) {
+  position: relative;
+  z-index: 5;
+}
+
+#section_2 .containDeviceImage .preview3 img:nth-child(2) {
+  position: absolute;
+  left: 0%;
+  z-index: 6;
+  animation-delay: .7;
+}
+
+#section_2 .containDeviceImage .preview3 img:nth-child(3) {
+  position: absolute;
+  left: 50%;
+  top: -5%;
+}
+
+#section_2 .containDeviceImage .preview3 img:nth-child(4) {
+  position: absolute;
+  left: 50%;
+  top: -5%;
+  z-index: 6;
+  animation-delay: 0.7;
+}
+
+#section_3 {
+  background-image: url("../images/pattern1.png");
+  background-repeat: repeat;
+}
+
+#section_3 .container .row p {
+  padding: 0 5%;
+}
+
+#section_3 .container .row > div.col-sm-4:nth-child(1) {
+  animation-delay: 0.5s;
+}
+
+#section_3 .container .row > div.col-sm-4:nth-child(2) {
+  animation-delay: 0.6s;
+}
+
+#section_3 .container .row > div.col-sm-4:nth-child(3) {
+  animation-delay: 0.7s;
+}
+
+#section_3 .container .row > div.col-sm-4:nth-child(4) {
+  animation-delay: 0.8s;
+}
+
+#section_3 .container .row > div.col-sm-4:nth-child(5) {
+  animation-delay: 0.9s;
+}
+
+#section_3 .container .row > div.col-sm-4:nth-child(6) {
+  animation-delay: 1s;
 }
