@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="css/fullpage.css"/>
     <link rel="stylesheet" type="text/css" href="css/app.css"/>
@@ -15,7 +16,7 @@
             <div class="row">
                 <div class="col-sm-12 firstHeader">
                     <img src="images/logo1.svg" height="40px">
-                    <div class="dropdown float-right" id="languege">
+                    <div class="dropdown float-right d-none d-lg-block" id="languege">
                         <button class="btn btn-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             English
                         </button>
@@ -24,6 +25,8 @@
                             <a class="dropdown-item" href="#">Tiếng việt</a>
                         </div>
                     </div>
+                    <button class="btn languege-for-mobile d-block d-lg-none float-right" type="button" data-toggle="modal" data-target="#languageModal">English <span class="caret"></span>
+                    </button>
                 </div>
                 <div class="col-sm-12 notFirstHeader d-none">
                     <img src="images/logo2.svg" alt="" height="40px">
@@ -36,7 +39,22 @@
         </div>
     </div>
 
-    <div class="slide-indicators animated fadeIn">
+    <div class="modal fade" id="languageModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm languageModal" >
+            <div class="modal-content">
+                <div class="">
+                    <a href="">
+                        <label>English
+                            <input type="radio" name="inlineRadioOptions" checked="checked">
+                        </label>
+                    </a>
+                </div>
+                <div class=""></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-indicators animated fadeIn d-none d-lg-block">
         <ol>
             <li data-slide-to="0" class="active"></li>
             <li data-slide-to="1"></li>
@@ -47,7 +65,7 @@
             <li data-slide-to="6"></li>
         </ol>
     </div>
-    <div class="listSocial">
+    <div class="listSocial d-none d-lg-block">
         <ol>
             <li class="animated fadeInLeft"><i class="fab fa-facebook-f"></i></li>
             <li class="animated fadeInLeft"><i class="fab fa-google-plus-g"></i></li>
@@ -71,15 +89,16 @@
                     <div class="content">
                         <div class="container">
                             <div class="row">
-                                <div class="col-sm-5 trai">
-                                    <img class="animated fadeInUp" src="images/logo_text.svg" alt="">
-                                    <p class="animated fadeInUp">Simplest way to manage personal finances. Because money matters.</p>
+                                <div class="col-lg-5 col-sm-12 col-12 trai">
+                                    <img class="animated fadeInUp" src="images/logo_text.svg">
+                                    <p class="animated fadeInUp">Simplest way to manage personal finances.<br>
+                                    Because money matters.</p>
                                     <div class="contain2button animated fadeInUp">
-                                        <button type="button" class="btn btn-primary mr-2">Try on browser</button>
+                                        <button type="button" class="btn btn-primary mr-3 d-none d-lg-inline-block">Try on browser</button>
                                         <button type="button" class="btn btn-primary green-background"><i class="fas fa-cloud-download-alt mr-2"></i>Download for free</button>
                                     </div>
                                 </div>
-                                <div class="col-sm-7 phai">
+                                <div class="col-lg-7 phai d-none d-lg-block">
                                     <img class="animated fadeInRight" src="images/screenshot1.png">
                                     <img class="animated fadeInRight" src="images/screenshot2.png">
                                     <img class="animated fadeInRight" src="images/screenshot3.png">
@@ -96,15 +115,18 @@
         <div class="section" id="section_1">
             <div class="container">
                 <div class="row content">
-                    <div class="col-sm-6 video">
+                    <div class="col-lg-6 d-none d-lg-block video">
                         <img src="images/postervideo.png" alt="">
                         <button class="btn animated fadeIn">
                             <span id="triangle-right"></span>
                         </button>
                     </div>
-                    <div class="col-sm-6 text">
-                        <h3 class="animated fadeInUp">An intuitive and cross-platform finance app</h3>
-                        <p class="animated fadeInUp">Money Lover helps you get just about everything managed. A smart, easy-to-use app that allows you to track and categorize your in-and-out money, create budgets that you can actually stick to. It works seamlessly across devices and platforms, available on phone, tablet, PC and Web.</p>
+                    <div class="col-lg-5 offset-lg-1 col-md-10 offset-md-1 col-sm-12 col-12 text">
+                        <div>
+                            <h3 class="animated fadeInUp">An intuitive and cross-platform finance app</h3>
+                            <iframe width="100%" src="https://www.youtube.com/embed/jSv7DUqZ3pk" frameborder="0" class="d-block d-lg-none" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen"></iframe>
+                            <p class="animated fadeInUp d-none d-md-block">Money Lover helps you get just about everything managed. A smart, easy-to-use app that allows you to track and categorize your in-and-out money, create budgets that you can actually stick to. It works seamlessly across devices and platforms, available on phone, tablet, PC and Web.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -112,7 +134,7 @@
         <div class="section" id="section_2">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-6 content">
+                    <div class="col-lg-6 content">
                         <div class="khoitrai">
                             <div class="khoitext animated fadeInLeft" index="1">
                                 <div>
@@ -134,7 +156,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-lg-6 d-none d-lg-block">
                         <div class="containDeviceImage">
                             <div class="preview1 animated fadeInRight">
                                 <img src="images/cash-book.png" alt="">
@@ -159,32 +181,32 @@
         <div class="section" id="section_3">
             <div class="container content">
                 <div class="row text-center">
-                    <div class="col-sm-4 mb-5 animated fadeIn">
+                    <div class="col-lg-4 col-sm-6 col-6 mb-5 animated fadeIn">
                         <img src="images/feature1.png" alt="">
                         <h3>Multiple devices</h3>
                         <p>Safely synchronize across devices with Bank standard security.</p>
                     </div>
-                    <div class="col-sm-4 mb-5 animated fadeIn">
+                    <div class="col-lg-4 col-sm-6 col-6 mb-5 animated fadeIn">
                         <img src="images/feature2.png" alt="">
                         <h3>Recurring transaction</h3>
                         <p>Get notified of recurring bills and transactions before due date.</p>
                     </div>
-                    <div class="col-sm-4 mb-5 animated fadeIn">
+                    <div class="col-lg-4 col-sm-6 col-6 mb-5 animated fadeIn">
                         <img src="images/feature3.png" alt="">
                         <h3>Travel mode</h3>
                         <p>All currencies supported with up-to-date exchange rate.</p>
                     </div>
-                    <div class="col-sm-4 animated fadeIn">
+                    <div class="col-lg-4 col-sm-6 col-6 animated fadeIn">
                         <img src="images/feature4.png" alt="">
                         <h3>Saving plan</h3>
                         <p>Keep track on savings process to meet your financial goals.</p>
                     </div>
-                    <div class="col-sm-4 animated fadeIn">
+                    <div class="col-lg-4 col-sm-6 col-6 animated fadeIn">
                         <img src="images/feature5.png" alt="">
                         <h3>Debt and Loan</h3>
                         <p>Manage your debts, loans and payment process in one place.</p>
                     </div>
-                    <div class="col-sm-4 animated fadeIn">
+                    <div class="col-lg-4 col-sm-6 col-6 animated fadeIn">
                         <img src="images/feature6.png" alt="">
                         <h3>Scan receipt</h3>
                         <p>Take pictures of your receipts to auto-process and organize them.</p>
