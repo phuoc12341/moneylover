@@ -1,9 +1,9 @@
 $( document ).ready(function() {
     new fullpage('#fullpage', {
-        autoScrolling:true,
         anchors:['firstPage', 'secondPage', 'thirdPage'],
-        scrollHorizontally: true,
-        autoScrolling: true,
+        scrollBar: true,
+        scrollOverflowReset: false,
+        controlArrows: true,
 
         afterLoad: function(origin, destination, direction){
             if (origin != null) {
@@ -45,10 +45,27 @@ $( document ).ready(function() {
 
     fullpage_api.setAllowScrolling(true);
 
+    var owl = $('.owl-carousel');
+    owl.owlCarousel({
+        items:1,
+        loop:true,
+        margin:10,
+        autoplay:true,
+        autoplayTimeout:3000,
+        center: true,
+        autoplayHoverPause:true
+    });
+    $('.play').on('click',function(){
+        owl.trigger('play.owl.autoplay',[1000])
+    })
+    $('.stop').on('click',function(){
+        owl.trigger('stop.owl.autoplay')
+    })
+
+
     let $listIndicators = $(".slide-indicators").find("li");
     $listIndicators.click(function () {
         $indexSlideTo = $(this).attr("data-slide-to");
-        console.log($indexSlideTo)
         fullpage_api.moveTo(++$indexSlideTo);
     });
 
@@ -90,5 +107,43 @@ $( document ).ready(function() {
             }
         });
     });
+
+    
+            $('.owl-next').click(function () {
+                owl.trigger('next.owl.carousel');
+            });
+
+            $('.owl-prev').click(function () {
+                owl.trigger('prev.owl.carousel');
+            });
+
+            $('.owl-page').click(function () {
+                indexSlideIsClicked = $(this).data("index-page");
+                switch (indexSlideIsClicked) {
+                    case 1:
+                        $("#section_4").find(".owl-page").addClass("");
+                        $("#section_4").find(".owl-page:nth-child(" + indexSlideIsClicked + ")").addClass("visible");
+                        break;
+                    case 2:
+                        // statements_1
+                        break;
+                    case 3:
+                        // statements_1
+                        break;
+                    default:
+                        // statements_def
+                        break;
+                }
+            })
+
+            $("#section_4").find(".my-carousel").mouseenter(function () {
+                owl.trigger("stop.owl.autoplay");
+            });
+
+            $("#section_4").find(".my-carousel").mouseleave(function () {
+                owl.trigger("play.owl.autoplay");
+            });
+
+        });
 
 });

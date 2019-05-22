@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+const webpack = require('webpack');
 
 /*
  |--------------------------------------------------------------------------
@@ -17,3 +18,13 @@ mix.js('resources/js/app.js', 'public/js')
     .options({
         processCssUrls: false
      });
+
+mix.webpackConfig({
+    plugins: [
+        new webpack.ProvidePlugin({
+          $: 'jquery',
+          jQuery: 'jquery',
+          'window.jQuery': 'jquery'
+        }),
+    ],
+});
