@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="css/fullpage.css"/>
     <link rel="stylesheet" type="text/css" href="css/app.css"/>
     <link rel="stylesheet" type="text/css" href="css/animate.css"/>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"> -->
 </head>
 <body>
     <div id="app"></div>
@@ -215,6 +215,32 @@
             </div>
         </div>
         <div class="section" id="section_4">
+            <div class="row">
+                <div class="col-md-10 offset-md-1 col-lg-6 offset-lg-3 d-none d-md-block">
+                    <div id="testimonial" class="owl-carousel owl-theme">
+                        <div class="item">A simple, accessible app that allows you to budget across weeks, months and years. The neat financial calendar lets you set up alerts and keep tabs on all transactions. Plus, it works with all currencies.</div>
+                        <div class="item">Perfect app. My husband and I use it to track all our expenses and income. We generate our household accounts and budget using this fab app. Furthermore, the developers are hands-on and extremely helpful. Do not look any further. Get this app now!.</div>
+                        <div class="item">This will keep you organized and in control, of money you do have and money you will have. This application is easy to use and will help you keep track of every dollar.</div>
+                    </div>
+                    <div class="line-indicator">
+                        
+                    </div>
+                    <div class="control-owl">
+                        <div class="owl-pagination">
+                            <div class="owl-page">
+                            </div>
+                            <div class="owl-page">
+                            </div>
+                            <div class="owl-page">
+                            </div>
+                        </div>
+                        <div class="owl-button">
+                            <div class="owl-prev"></div>
+                            <div class="owl-next"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
         </div>
         <div class="section" id="section_5">Some section</div>
