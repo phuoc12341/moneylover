@@ -31,7 +31,7 @@
                 <div class="col-sm-12 notFirstHeader d-none">
                     <img src="images/logo2.svg" alt="" height="40px">
                     <div class="float-right">
-                        <a href="#" class="btn btn-primary btn-lg mr-3">Try on browser</a>
+                        <a href="https://web.moneylover.me" target="_blank" class="btn btn-primary btn-lg mr-3">Try on browser</a>
                         <button class="btn btn-secondary">Download for free</button>
                     </div>
                 </div>
@@ -67,9 +67,9 @@
     </div>
     <div class="listSocial d-none d-lg-block">
         <ol>
-            <li class="animated fadeInLeft"><i class="fab fa-facebook-f"></i></li>
-            <li class="animated fadeInLeft"><i class="fab fa-google-plus-g"></i></li>
-            <li class="animated fadeInLeft"><i class="fab fa-twitter"></i></li>
+            <li class="animated fadeInLeft"><a href="https://www.facebook.com/moneylover.me" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+            <li class="animated fadeInLeft"><a href="https://plus.google.com/+MoneyloverMe" target="_blank"><i class="fab fa-google-plus-g"></i></a></li>
+            <li class="animated fadeInLeft"><a href="https://www.twitter.com/moneyloverapp" target="_blank"><i class="fab fa-twitter"></i></a></li>
         </ol>
     </div>
 
@@ -94,7 +94,8 @@
                                     <p class="animated fadeInUp">Simplest way to manage personal finances.<br>
                                     Because money matters.</p>
                                     <div class="contain2button animated fadeInUp">
-                                        <button type="button" class="btn btn-primary mr-3 d-none d-lg-inline-block">Try on browser</button>
+<!--                                         <button type="button" class="btn btn-primary mr-3 d-none d-lg-inline-block">Try on browser</button> -->
+                                        <a href="https://web.moneylover.me" target="_blank" class="btn btn-primary btn-lg mr-3 d-none d-lg-inline-block">Try on browser</a>
                                         <button type="button" class="btn btn-primary green-background"><i class="fas fa-cloud-download-alt mr-2"></i>Download for free</button>
                                     </div>
                                 </div>
@@ -278,22 +279,22 @@
         <div class="section" id="section_6">
             <div class="container">
                 <div class="row content">
-                    <div class="col-4 offset-4 text-center">
-                        <h2 class="getNow">Get it now</h2>
+                    <div class="col-md-4 offset-md-4 col-sm-12 col-12 text-center p-0">
+                        <h2 class="getNow p-0">Get it now</h2>
                     </div>
                     <div class="col-8 offset-2">
                         <div class="row devices">
-                            <div class="col-4 text-center">
+                            <div class="col-lg-4 d-none d-lg-block text-center">
                                 <a href="https://play.google.com/store/apps/details?id=com.bookmark.money&referrer=utm_source%3Dlanding" target="_blank">
                                     <img src="images/android_page7n.png" class="animated fadeInLeft android">
                                 </a>
                             </div>
-                            <div class="col-4 text-center">
+                            <div class="col-lg-4 d-none d-lg-block text-center">
                                 <a href="https://itunes.apple.com/app/apple-store/id486312413?pt=694013&ct=landing&mt=8" target="_blank">
                                     <img src="images/iPhone_page71.png" class="animated fadeIn ios">
                                 </a>
                             </div>
-                            <div class="col-4 text-center">
+                            <div class="col-lg-4 d-none d-lg-block text-center">
                                 <a href="https://www.microsoft.com/en-us/store/p/money-lover-money-manager/9wzdncrdrg5v?ocid=badge" target="_blank">
                                     <img src="images/winphone_page777.png" class="animated fadeInRight winphone">
                                 </a>

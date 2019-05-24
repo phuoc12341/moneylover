@@ -13,7 +13,7 @@ const webpack = require('webpack');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-	.js('resources/js/custom.js', 'public/js')
+	.js('resources/js/custom.js', 'public/js/app.js')
     .sass('resources/sass/app.scss', 'public/css')
     .options({
         processCssUrls: false

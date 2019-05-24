@@ -1,9 +1,12 @@
 $( document ).ready(function() {
     new fullpage('#fullpage', {
-        anchors:['firstPage', 'secondPage', 'thirdPage'],
+        anchors:['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'fifth', 'sixth', 'seventh'],
         // scrollBar: true,
         scrollOverflowReset: false,
         controlArrows: true,
+        fitToSection: true,
+        easing: 'easeInOutCubic',
+
 
 
         afterLoad: function(origin, destination, direction){
@@ -16,10 +19,15 @@ $( document ).ready(function() {
                 $(".header").find('.firstHeader').removeClass('d-none');
                 $(".header").find('.notFirstHeader').addClass('d-none');
                 $(".header").removeClass("isNotFirstPage");
+
+                $(".listSocial ol li a").addClass("white");
+                $(".listSocial ol li").addClass("border-first-white");
             } else if (destination.index != 0) {
                 $(".header").find('.firstHeader').addClass('d-none');
                 $(".header").find('.notFirstHeader').removeClass('d-none');
                 $(".header").addClass("isNotFirstPage");
+                $(".listSocial ol li a").removeClass("white");
+                $(".listSocial ol li").removeClass("border-first-white");
             } 
 
             if (destination.index == 6) {
@@ -53,7 +61,21 @@ $( document ).ready(function() {
             $(this).addClass("d-none");
         }
     });
-    console.log(listContentOfSlide)
+
+    if ($( window ).width() <= 991) {
+        fullpage_api.setResponsive(true);
+    } else if ($( window ).width() >= 992) {
+        fullpage_api.setResponsive(false);
+    }
+
+    $(window).on('resize', function(){
+        let win = $(this);
+        if (win.width() >= 992) {
+            fullpage_api.setResponsive(false);
+        } else if (win.width() < 992) {
+            fullpage_api.setResponsive(true);
+        }
+    });
 
     var owl = $('.owl-carousel');
     owl.owlCarousel({
@@ -169,5 +191,10 @@ $( document ).ready(function() {
     $("#section_4").find(".my-carousel").mouseleave(function () {
         owl.trigger("play.owl.autoplay");
     });
+
+    $downloadBtn = $("#section_0 .row button:nth-child(2)");
+    $downloadBtn.click(function () {
+        fullpage_api.moveTo(7);
+    })
 
 });
