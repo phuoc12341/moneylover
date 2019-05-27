@@ -1,9 +1,0 @@
-FROM nginx:1.15.10
-
-# Set working directory
-WORKDIR /var/www/html/paginator
-
-RUN apt-get update && \
-    touch /etc/ssl/server.key && \
-    touch /etc/ssl/server.crt && \
-    apt-get install apache2-utils -y
