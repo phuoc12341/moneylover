@@ -123,7 +123,15 @@
     top: 60px;
     width: 300px;
   }
+
+  #section_4 .row #testimonial > div {
+    font-size: 15px;
+    font-weight: lighter;
+    font-style: italic;
+    font-family: roboto, sans-serif;
+  }
 }
+
 .tren > .content {
   height: 100%;
 }
@@ -626,6 +634,11 @@
           animation-delay: 1s;
 }
 
+#section_4 .row {
+  background-image: url("../images/pattern1.png");
+  background-repeat: repeat;
+}
+
 #section_4 .row > div {
     top: 50%;
     transform: translateY(-50%);
@@ -763,6 +776,7 @@
     border: 1px dotted #999;
     border-radius: 30px;
     padding: 5px 20px;
+    visibility: hidden;
 }
 
 #section_4 .row .control-owl .owl-page:nth-child(2)::after {
@@ -797,6 +811,10 @@
   opacity: 1;
 }
 
+#section_4 .row .control-owl .owl-page.isShowed {
+  opacity: 1;
+}
+
 #section_4 .row .line-indicator {
   height: 1px;
     margin-top: 5%;
@@ -813,10 +831,12 @@
     bottom: -14px;
     transform: translateX(-50%);
     left: calc(50% - (40px + 4rem));
+    transition: all 0.2s ease;
 }
 
 #section_4 .row .line-indicator::after {
-        color: #000;ontent: "";
+    content: "";
+    color: #000;
     border-width: 15px 15px 0px;
     position: absolute;
     border-style: solid;
@@ -824,9 +844,250 @@
     bottom: -11px;
     transform: translateX(-50%);
     left: calc(50% - (40px + 4rem));
+    transition: all 0.2s ease;
 }
 
 #section_4 .row #testimonial {
   font-style: italic;
   font-size: 17px;
+}
+
+#section_4 .row .control-owl .owl-page.isClicked:nth-child(1)::after {
+  visibility: visible;
+}
+
+#section_4 .row .control-owl .owl-page.isClicked:nth-child(2)::after {
+  visibility: visible;
+}
+
+#section_4 .row .control-owl .owl-page.isClicked:nth-child(3)::after {
+  visibility: visible;
+}
+
+#section_4 .row .line-indicator.firstImage::after,
+#section_4 .row .line-indicator.firstImage::before {
+  left: calc(50% - (40px + 4rem));
+}
+
+#section_4 .row .line-indicator.secondImage::after,
+#section_4 .row .line-indicator.secondImage::before {
+  left: 50%;
+}
+
+#section_4 .row .line-indicator.thirdImage::after,
+#section_4 .row .line-indicator.thirdImage::before {
+  left: calc(50% + (40px + 4rem));
+}
+
+#section_5 .container {
+  width: 100%;
+  height: 100%;
+  background-image: url("../images/pattern1.png");
+  background-repeat: repeat;
+}
+
+#section_5 .row {
+  height: 50%;
+  transform: translateY(50%);
+}
+
+#section_5 .row h3.heading {
+  color: #38b54e!important;
+  position: fixed;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#section_5 .container .row .heads-blog {
+  height: 100%;
+}
+
+#section_5 .container .row .heads-blog a:nth-child(1) {
+  height: 50%;
+  width: 100%;
+  display: block;
+  background: url(http://note.moneylover.me/content/images/2019/03/Guide-Cut-your-spending--1-.jpg) no-repeat center;
+  background-size: cover;
+  position: relative;
+  margin-bottom: 12px;
+  animation-delay: 1s;
+}
+
+#section_5 .container .row .heads-blog a:nth-child(2) {
+  height: 50%;
+  width: 100%;
+  display: block;
+  background: url(https://note.moneylover.me/content/images/2018/10/money-saving.jpg) no-repeat center;
+  background-size: cover;
+  position: relative;
+  animation-delay: 1.2s;
+}
+
+#section_5 .container .row .heads-blog a::after {
+  content: "";
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAB9JREFUeNpiZmBg6AZiDiBWZ4YyQMCOCcYA4kMAAQYAHyYCCUdxidgAAAAASUVORK5CYII=");
+  position: absolute;
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  right: 0;
+}
+
+#section_5 .container .row .heads-blog a:hover::after {
+  background: linear-gradient(transparent,rgba(0,0,0,0.5));
+}
+
+#section_5 .container .row .khoitrai::before {
+    content: "";
+    position: absolute;
+    background-color: #38b54e;
+    width: 3px;
+    height: calc(100% + 12px) ;
+}
+
+#section_5 .container .row .childs-blog {
+  position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#section_5 .container .row .childs-blog a {
+  color: #323232;
+  text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 600;
+      font-size: 15px;
+          transition: all .3s;
+}
+
+#section_5 .container .row .childs-blog a:hover {
+      color: #2a893b;
+}
+
+#section_5 .container .row .childs-blog p {
+      opacity: .7;
+}
+
+#section_5 .container .row .childs-blog .blog {
+      margin: 20px 0 30px;
+    padding: 0 5% 0 7%;
+    position: relative;
+}
+
+#section_5 .container .row .childs-blog .blog:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+#section_5 .container .row .childs-blog .blog:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+#section_5 .container .row .childs-blog .blog:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+#section_5 .container .row .childs-blog .blog:nth-child(4) {
+  animation-delay: 0.8s;
+}
+
+#section_5 .container .row .childs-blog > div.blog::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    background-color: #38b54e;
+    border-radius: 50%;
+    box-shadow: 0 0 0 5px #fff;
+    position: absolute;
+    top: calc(5% + 5px);
+    left: calc(0% - 2px);
+}
+
+#section_6 {
+  background-image: url("../images/pattern1.png");
+  background-repeat: repeat;
+}
+
+#section_6 .container .row h2.getNow {
+  font-weight: 700;
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+#section_6 .container .row .row.devices {
+    margin-bottom: 15px;
+    margin-top: 20px;
+}
+
+#section_6 .container .footer { 
+  height: 60px;
+  background-color: #36383b;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #fff;
+  font-size: 13px;
+  padding: 13px;
+  font-weight: lighter;
+}
+
+#section_6 .container .footer > div.container-fluid {
+    height: 100%;
+    width: calc(100vw - 275px);
+    padding: 0;
+}
+
+#section_6 .container .footer .row strong {
+  font-weight: bold;
+}
+
+#section_6 .container .footer .row .padding-for-chatbox {
+      padding-right: 50px;
+}
+
+@media screen and (min-width: 992px) {
+  .text-right-not-mobile {
+    text-align: right;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  #section_6 .container .footer {
+    height: auto;
+  }
+
+  #section_6 .container .footer > div.container-fluid {
+    width: auto;
+  }
+
+  .text-right-not-mobile {
+    text-align: right;
+  }
+}
+
+  @media screen and (max-width: 767px) {
+    .text-right-not-mobile {
+      text-align: left;
+    }
+  }
+
+#section_6 .container .footer .row .inPolicy {
+  color: #fff;
+}
+
+#section_6 .container .footer .row .inPolicy:hover {
+  color: #38b54e;
+}
+
+#section_6 .container .row .row.devices img:nth-child(1) {
+  animation-delay: 0.5s
+}
+
+#section_6 .container .row .row.devices img:nth-child(2) {
+  animation-delay: 0.8s
+}
+
+#section_6 .container .row .row.devices img:nth-child(3) {
+  animation-delay: 0.5s
 }
