@@ -13,8 +13,8 @@ const webpack = require('webpack');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-	.js('resources/js/custom.js', 'public/js/app.js')
-    .sass('resources/sass/app.scss', 'public/css')
+	.js('resources/js/custom.js', 'public/js/home.js')
+  .js('resources/js/owl-custom.js', 'public/js/app.js')
     .options({
         processCssUrls: false
      });

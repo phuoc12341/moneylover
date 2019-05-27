@@ -4,7 +4,7 @@ $( document ).ready(function() {
         // scrollBar: true,
         scrollOverflowReset: false,
         controlArrows: true,
-        fitToSection: true,
+        // fitToSection: true,
         easing: 'easeInOutCubic',
 
 
@@ -16,19 +16,24 @@ $( document ).ready(function() {
             }
 
             if (destination.index == 0) {
-                $(".header").find('.firstHeader').removeClass('d-none');
-                $(".header").find('.notFirstHeader').addClass('d-none');
-                $(".header").removeClass("isNotFirstPage");
+                if ($( window ).width() >= 992) {
+                    console.log('test')
+                    $(".header").find('.firstHeader').removeClass('d-none');
+                    $(".header").find('.notFirstHeader').addClass('d-none');
+                    $(".header").removeClass("isNotFirstPage");
+                }
 
                 $(".listSocial ol li a").addClass("white");
                 $(".listSocial ol li").addClass("border-first-white");
             } else if (destination.index != 0) {
-                $(".header").find('.firstHeader').addClass('d-none');
-                $(".header").find('.notFirstHeader').removeClass('d-none');
-                $(".header").addClass("isNotFirstPage");
+                if ($( window ).width() >= 992) {
+                    $(".header").find('.firstHeader').addClass('d-none');
+                    $(".header").find('.notFirstHeader').removeClass('d-none');
+                    $(".header").addClass("isNotFirstPage");
+                }
                 $(".listSocial ol li a").removeClass("white");
                 $(".listSocial ol li").removeClass("border-first-white");
-            } 
+            }
 
             if (destination.index == 6) {
                 $(".header").find(".notFirstHeader").find("button").addClass("d-none");
@@ -77,24 +82,6 @@ $( document ).ready(function() {
         }
     });
 
-    var owl = $('.owl-carousel');
-    owl.owlCarousel({
-        items:1,
-        margin:10,
-        autoplay:true,
-        autoplayTimeout:3000,
-        center: true,
-        rewind: true,
-        autoplayHoverPause:true
-    });
-    $('.play').on('click',function(){
-        owl.trigger('play.owl.autoplay')
-    })
-    $('.stop').on('click',function(){
-        owl.trigger('stop.owl.autoplay')
-    })
-
-
     let $listIndicators = $(".slide-indicators").find("li");
     $listIndicators.click(function () {
         $indexSlideTo = $(this).attr("data-slide-to");
@@ -138,58 +125,6 @@ $( document ).ready(function() {
                 imageGif2.attr("src", "images/in_depth_2.gif?" +new Date().getTime());
             }
         });
-    });
-
-    $('.owl-next').click(function () {
-        owl.trigger('next.owl.carousel', [400]);
-    });
-
-    $('.owl-prev').click(function () {
-        owl.trigger('prev.owl.carousel', [400]);
-    });
-
-    $("#section_4").find(".owl-page:nth-child(1)").addClass("isClicked isShowed");
-
-    $('.owl-page').click(function () {
-        indexImageIsClicked = $(this).data("index-page");
-        $("#section_4").find(".owl-page").removeClass("isClicked isShowed");
-        $("#section_4").find(".owl-page:nth-child(" + indexImageIsClicked + ")").addClass("isClicked isShowed");
-        
-        $("#section_4").find(".line-indicator").removeClass("firstImage secondImage thirdImage");
-        if (indexImageIsClicked == 1) {
-            $("#section_4").find(".line-indicator").addClass("firstImage");
-        } else if (indexImageIsClicked == 2) {
-            $("#section_4").find(".line-indicator").addClass("secondImage");
-        } else if (indexImageIsClicked == 3) {
-            $("#section_4").find(".line-indicator").addClass("thirdImage");
-        }
-
-        owl.trigger('to.owl.carousel', [--indexImageIsClicked, [400]]);
-    });
-
-    owl.on('changed.owl.carousel', function(event) {
-        let indexOfSlide = event.item.index;
-        indexOfSlide = ++indexOfSlide;
-
-        $("#section_4").find(".owl-page").removeClass("isClicked isShowed");
-        $("#section_4").find(".owl-page:nth-child(" + indexOfSlide + ")").addClass("isClicked isShowed");
-        
-        $("#section_4").find(".line-indicator").removeClass("firstImage secondImage thirdImage");
-        if (indexOfSlide == 1) {
-            $("#section_4").find(".line-indicator").addClass("firstImage");
-        } else if (indexOfSlide == 2) {
-            $("#section_4").find(".line-indicator").addClass("secondImage");
-        } else if (indexOfSlide == 3) {
-            $("#section_4").find(".line-indicator").addClass("thirdImage");
-        }
-    })
-
-    $("#section_4").find(".my-carousel").mouseenter(function () {
-        owl.trigger("stop.owl.autoplay");
-    });
-
-    $("#section_4").find(".my-carousel").mouseleave(function () {
-        owl.trigger("play.owl.autoplay");
     });
 
     $downloadBtn = $("#section_0 .row button:nth-child(2)");
