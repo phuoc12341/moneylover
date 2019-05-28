@@ -5,14 +5,14 @@ services:
       context: ./.develop/build/composer
       dockerfile: Composer_Dockerfile
     volumes:
-      - ./:/var/www/html/paginator
-    entrypoint: ['bash', '/var/www/html/paginator/.develop/build/composer/composer.sh']
+      - ./:/var/www/html/moneylover
+    entrypoint: ['bash', '/var/www/html/moneylover/.develop/build/composer/composer.sh']
   php-fpm:
     build:
       context: ./.develop/build/php-fpm
       dockerfile: Php-fpm_Dockerfile
     volumes:
-      - ./:/var/www/html/paginator
+      - ./:/var/www/html/moneylover
   nginx:
     build:
       context: ./.develop/build/nginx
@@ -20,7 +20,7 @@ services:
     volumes:
       - ./.develop/build/nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./.develop/build/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
-      - ./:/var/www/html/paginator
+      - ./:/var/www/html/moneylover
       - ./.develop/build/nginx/ssl/certs/nginx-selfsigned.crt:/etc/ssl/server.crt
       - ./.develop/build/nginx/ssl/private/nginx-selfsigned.key:/etc/ssl/server.key
       - ./.develop/build/nginx/.htpasswd:/etc/nginx/.htpasswd

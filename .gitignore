@@ -12,4 +12,5 @@ yarn-error.log
 .develop/build/database
 /public/css
 /public/js
-bower_components/
+/public/bower_components
+/public/mix-manifest.json

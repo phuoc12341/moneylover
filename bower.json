@@ -1,0 +1,20 @@
+{
+  "name": "moneylover",
+  "description": "",
+  "main": "",
+  "authors": [
+    "FRAMGIA\\kieu.minh.phuoc@b121647 <phuoc123411@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/phuoc12341/moneylover",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "moneylover-bower": "*"
+  }
+}

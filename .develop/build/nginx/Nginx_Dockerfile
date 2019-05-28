@@ -1,7 +1,7 @@
 FROM nginx:1.15.10
 
 # Set working directory
-WORKDIR /var/www/html/paginator
+WORKDIR /var/www/html/moneylover
 
 RUN apt-get update && \
     touch /etc/ssl/server.key && \
