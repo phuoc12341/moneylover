@@ -1,4 +1,4 @@
 FROM composer:1.8.4
 
 # Set working directory
-WORKDIR /var/www/html/paginator
+WORKDIR /var/www/html/moneylover

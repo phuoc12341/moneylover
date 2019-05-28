@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="css/fullpage.css"/>
+    <link rel="stylesheet" type="text/css" href="bower_components/moneylover-bower/fullpage/fullpage.css"/>
     <link rel="stylesheet" type="text/css" href="css/app.css"/>
-    <link rel="stylesheet" type="text/css" href="css/animate.css"/>
+    <link rel="stylesheet" type="text/css" href="bower_components/moneylover-bower/animate.css"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 </head>
 <body>
@@ -322,7 +322,7 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="js/fullpage.js"></script>
+    <script type="text/javascript" src="bower_components/moneylover-bower/fullpage/fullpage.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>
