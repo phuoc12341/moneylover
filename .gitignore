@@ -9,6 +9,6 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-.develop/
-public/
+.develop/build/database
+/public
 bower_components/
