@@ -33,6 +33,8 @@ License: You must have a valid license purchased only from themeforest(the above
                 }
             });
         </script>
+        
+        @yield('style')
 
         <!--end::Page Vendors -->
         <link href="bower_components/moneylover-bower/admin_layout/css/vendors.bundle.css" rel="stylesheet" type="text/css" />
@@ -405,10 +407,9 @@ License: You must have a valid license purchased only from themeforest(the above
         <!--begin::Base Scripts -->
         <script src="bower_components/moneylover-bower/admin_layout/js/vendors.bundle.js" type="text/javascript"></script>
         <script src="bower_components/moneylover-bower/admin_layout/js/scripts.bundle.js" type="text/javascript"></script>
-
         <!--end::Base Scripts -->
+        @yield('script')
 
     </body>
-
     <!-- end::Body -->
 </html>
