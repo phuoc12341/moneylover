@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('index');
 });
 
-
+Route::resource('setting', 'SettingController');
 
 Auth::routes();
 

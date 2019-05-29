@@ -34,7 +34,13 @@ class SettingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $site_name = $request->site_name;
+        $email = $request->email;
+        $phone = $request->phone;
+        $address = $request->address;
+        $logo = $request->logo;
+
+        
     }
 
     /**
