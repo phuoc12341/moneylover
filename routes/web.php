@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::resource('setting', 'SettingController');
+Route::resource('social', 'SocialController');
 
 Auth::routes();
 
