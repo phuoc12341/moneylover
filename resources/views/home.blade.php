@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('style')
-    <link href="css/fontawesome-iconpicker.min.css" rel="stylesheet">
+
 @endsection
 
 @section('content')
@@ -24,7 +24,7 @@
                 </div>
 
                 <!--begin::Form-->
-                <form class="m-form" action="/setting" method="POST">
+                <form class="m-form" action="/setting" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="m-portlet__body">
                         <div class="m-form__section m-form__section--first">
@@ -48,7 +48,7 @@
                             </div>
                             <div class="form-group m-form__group">
                                 <label>Logo:</label>
-                                <input type="file" name="logo" class="form-control m-input" placeholder="Enter Image for Logo">
+                                <input type="file" name="logo" class="form-control m-input">
                             </div>
                         </div>
                     </div>
@@ -58,16 +58,6 @@
                             <button type="reset" class="btn btn-secondary">Cancel</button>
                         </div>
                     </div>
-
-                    <input class="icp demo" value="fa-anchor" type="text">
-                    <div class="btn-group">
-                      <button data-selected="graduation-cap" type="button" class="icp demo btn btn-default dropdown-toggle iconpicker-component" data-toggle="dropdown">
-                          Dropdown  <i class="fa fa-fw"></i>
-                          <span class="caret"></span>
-                      </button>
-                      <div class="dropdown-menu"></div>
-                    </div>
-
                 </form>
 
                 <!--end::Form-->
@@ -80,8 +70,5 @@
 @endsection
 
 @section('script')
-    <script src="js/fontawesome-iconpicker.js"></script>
-    <script>
-        $('.demo').iconpicker();
-    </script>
+
 @endsection
