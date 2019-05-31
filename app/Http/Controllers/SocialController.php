@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Social;
+use App\Http\Requests\Social\SocialCreateRequest;
+use App\Http\Requests\Social\SocialUpdateRequest;
 
 class SocialController extends Controller
 {
@@ -39,14 +41,14 @@ class SocialController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SocialCreateRequest $request)
     {
         $social = new Social;
         $social->url = $request->url;
         $social->icon = $request->icon;
         $social->save();
 
-        return redirect()->route('social.index');
+        return redirect()->route('social.index', __('messages.success_create_social'));
     }
 
     /**
@@ -80,9 +82,15 @@ class SocialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SocialUpdateRequest $request, $id)
     {
-        //
+        $social = Social::find($id);
+
+        $social->url = $request->url;
+        $social->icon = $request->icon;
+        $social->save();
+
+        return redirect()->back()->with('success', __('messages.success_update_social'));
     }
 
     /**
@@ -96,6 +104,6 @@ class SocialController extends Controller
         $social = Social::find($id);
         $social->delete();
 
-        return redirect()->back();
+        return redirect()->back()->with('success', __('messages.success_delete_social'));
     }
 }
