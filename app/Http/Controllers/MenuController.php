@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\SettingRequest;
-use App\Models\Setting;
-use Illuminate\Support\Facades\Storage;
 
-class SettingController extends Controller
+use App\Models\Menu;
+use App\Http\Requests\MenuRequest;
+
+class MenuController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,13 @@ class SettingController extends Controller
      */
     public function index()
     {
-        //
+        $listMenu = Menu::all();
+
+        $compact = [
+            'listMenu' => $listMenu,
+        ];
+
+        return view('menu.index', $compact);
     }
 
     /**
@@ -26,17 +32,7 @@ class SettingController extends Controller
      */
     public function create()
     {
-        $setting = Setting::find(1);
-
-        if (is_null($setting)) {
-            return view('setting.update_or_create');
-        }
-
-        $compact = [
-            'setting' => $setting,
-        ];
-
-        return view('setting.update_or_create', $compact);
+        return view('menu.create');
     }
 
     /**
@@ -45,32 +41,30 @@ class SettingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MenuRequest $request)
     {
-        $setting = Setting::find(1);
-        if (is_null($setting)) {
-            $setting = new Setting;
-        }
+        $menu = new Menu;
+        $menu->about_us = $request->about_us;
+        $menu->privacy_policy = $request->privacy_policy;
+        $menu->career = $request->career;
 
-        $setting->site_name = $request->site_name;
-        $setting->email = $request->email;
-        $setting->phone = $request->phone;
-        $setting->address = $request->address;
-
-        if ($request->hasFile('logo')) {
-            if ($request->file('logo')->isValid()) {
-                if ($setting->logo != '' && $setting->logo != null) {
-                    Storage::delete($setting->logo);
-                }
-
-                $path = $request->logo->store(config('custom.file_storage.upload_path'));
-                $setting->logo = $path;      
+        if ($request->hasFile('first_logo')) {
+            if ($request->file('first_logo')->isValid()) {
+                $path = $request->first_logo->store(config('custom.file_storage.upload_path'));
+                $menu->first_logo = $path;      
             }
         };
-        
-        $setting->save();
 
-        return redirect(route('setting.create'));
+        if ($request->hasFile('not_first_logo')) {
+            if ($request->file('not_first_logo')->isValid()) {
+                $path = $request->not_first_logo->store(config('custom.file_storage.upload_path'));
+                $menu->not_first_logo = $path;      
+            }
+        };
+
+        $menu->save();
+
+        return redirect()->route('menu.index', __('messages.success_create_social'));
     }
 
     /**

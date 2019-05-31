@@ -26,35 +26,42 @@
                                 <i class="la la-gear"></i>
                             </span>
                             <h3 class="m-portlet__head-text">
-                                Form Create Social 
+                                Form Create Menu 
                             </h3>
                         </div>
                     </div>
                 </div>
 
                 <!--begin::Form-->
-                <form class="m-form" action="{{ route('social.store') }}" method="POST" enctype="multipart/form-data">
+                <form class="m-form" action="{{ route('menu.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="m-portlet__body">
                         <div class="khoi" data-index=1>
                             <div class="m-form__section m-form__section--first">
                                 <div class="form-group m-form__group">
-                                    <label for="example_input_full_name">URL:</label>
-                                    <input type="text" name="url" class="form-control m-input" placeholder="Enter URL" value="{{ old('url') }}">
+                                    <label for="example_input_full_name">URL for About us:</label>
+                                    <input type="text" name="about_us" class="form-control m-input" placeholder="Enter URL for About" value="{{ old('about_us') }}">
                                 </div>
                             </div>
                             <div class="m-form__section m-form__section--first">
                                 <div class="form-group m-form__group">
-                                    <label for="example_input_full_name">Icon:</label>
-                                    <input type="text" name="icon" class="form-control m-input" value="{{ old('icon') }}">
+                                    <label for="example_input_full_name">URL for Privacy Policy:</label>
+                                    <input type="text" name="privacy_policy" class="form-control m-input" value="{{ old('privacy_policy') }}" placeholder="Enter URL for Privacy Policy">
                                 </div>
                             </div>
-                            <div class="btn-group">
-                                <button data-selected="graduation-cap" type="button" class="icp iconpicker btn btn-default dropdown-toggle iconpicker-component float-right" data-toggle="dropdown">Icon
-                                    <i class="fa fa-fw"></i>
-                                    <span class="caret"></span>
-                                </button>
-                                <div class="dropdown-menu"></div>
+                            <div class="m-form__section m-form__section--first">
+                                <div class="form-group m-form__group">
+                                    <label for="example_input_full_name">URL for Career:</label>
+                                    <input type="text" name="career" class="form-control m-input" value="{{ old('career') }}" placeholder="Enter URL for Career">
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group">
+                                <label>Image for First Slide:</label>
+                                <input type="file" name="first_logo" class="form-control m-input">
+                            </div>
+                            <div class="form-group m-form__group">
+                                <label>Image for Not First Slide:</label>
+                                <input type="file" name="not_first_logo" class="form-control m-input">
                             </div>
                         </div>
                     </div>
