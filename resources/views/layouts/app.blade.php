@@ -19,7 +19,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <meta charset="utf-8" />
         <title>Metronic | Dashboard</title>
         <meta name="description" content="Latest updates and statistic charts">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"> -->
 
         <!--begin::Web font -->
         <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>

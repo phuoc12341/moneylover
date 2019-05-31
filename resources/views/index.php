@@ -28,9 +28,9 @@
                     <button class="btn languege-for-mobile d-block d-lg-none float-right" type="button" data-toggle="modal" data-target="#languageModal">English <span class="caret"></span>
                     </button>
                 </div>
-                <div class="col-sm-12 notFirstHeader d-none">
-                    <img src="images/logo2.svg" alt="" height="40px">
-                    <div class="float-right">
+                <div class="col-sm-12 notFirstHeader">
+                    <img class="col-12 col-md-6" src="images/logo2.svg" alt="" height="40px">
+                    <div class="d-none col-md-6 d-sm-block float-right">
                         <a href="https://web.moneylover.me" target="_blank" class="btn btn-primary btn-lg mr-3">Try on browser</a>
                         <button class="btn btn-secondary">Download for free</button>
                     </div>
@@ -40,16 +40,22 @@
     </div>
 
     <div class="modal fade" id="languageModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm languageModal" >
-            <div class="modal-content">
-                <div class="">
+        <div class="modal-dialog modal-sm languageModal col-12" >
+            <div class="modal-content  animated flipInX">
+                <div class="control">
+                    <input type="radio" name="inlineRadioOptions" checked="checked"> 
                     <a href="">
-                        <label>English
-                            <input type="radio" name="inlineRadioOptions" checked="checked">
-                        </label>
+                        <label>English</label>
                     </a>
+                    <img src="images/flag_en.png" alt="nglish" height="24px" class="pull-right">
                 </div>
-                <div class=""></div>
+                <div class="control">
+                    <input type="radio" name="inlineRadioOptions">
+                    <a href="">
+                        <label>Tiếng Việt</label>
+                    </a>
+                    <img src="images/flag_vi.png" alt="nglish" height="24px" class="pull-right">
+                </div>
             </div>
         </div>
     </div>
@@ -94,7 +100,7 @@
                                     <p class="animated fadeInUp">Simplest way to manage personal finances.<br>
                                     Because money matters.</p>
                                     <div class="contain2button animated fadeInUp">
-<!--                                         <button type="button" class="btn btn-primary mr-3 d-none d-lg-inline-block">Try on browser</button> -->
+                                        <!--                                         <button type="button" class="btn btn-primary mr-3 d-none d-lg-inline-block">Try on browser</button> -->
                                         <a href="https://web.moneylover.me" target="_blank" class="btn btn-primary btn-lg mr-3 d-none d-lg-inline-block">Try on browser</a>
                                         <button type="button" class="btn btn-primary green-background"><i class="fas fa-cloud-download-alt mr-2"></i>Download for free</button>
                                     </div>
@@ -224,7 +230,7 @@
                         <div class="item">This will keep you organized and in control, of money you do have and money you will have. This application is easy to use and will help you keep track of every dollar.</div>
                     </div>
                     <div class="line-indicator">
-                        
+
                     </div>
                     <div class="control-owl">
                         <div class="owl-pagination">
