@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('style')
-    <link href="bower_components/moneylover-bower/fontawesome-iconpicker/fontawesome-iconpicker.min.css" rel="stylesheet" type="text/css" />
+
 @endsection
 
 @section('content')
@@ -83,21 +83,5 @@
 @endsection
 
 @section('script')
-    <script src="bower_components/moneylover-bower/fontawesome-iconpicker/fontawesome-iconpicker.js" type="text/javascript"></script>
 
-    <script>
-        $(".iconpicker").iconpicker({
-            placement: 'bottomLeft',
-            animation: true,
-            hideOnSelect: true,
-            inputSearch: true,
-        });
-
-
-        $('.iconpicker').on('iconpickerSelected', function(event){
-            $icon = $(this).find("i").attr('class');
-            $iconInput = $(this).parent().prev().find("input[name='icon']");
-            $iconInput.val($icon);
-        });
-    </script>
 @endsection
