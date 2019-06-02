@@ -2,6 +2,6 @@
 
 return [
     'file_storage' => [
-        'upload_path' => 'upload/images',
+        'upload_path' => 'public/upload/images',
     ],
 ];
