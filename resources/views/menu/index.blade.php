@@ -38,7 +38,7 @@
                     <div class="m-portlet__head-tools">
                         <ul class="m-portlet__nav">
                             <li class="m-portlet__nav-item">
-                                <a href="{{ route('social.create') }}" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
+                                <a href="{{ route('menu.create') }}" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
                                     <span>
                                         <i class="la la-plus"></i>
                                         <span>New Social</span>
@@ -55,17 +55,20 @@
                         <thead>
                             <tr class="text-center">
                                 <th>ID</th>
-                                <th>URL</th>
-                                <th>Icon</th>
+                                <th>About Us</th>
+                                <th>Privacy Policy</th>
+                                <th>Career</th>
+                                <th>First Logo</th>
+                                <th>Not First Logo</th>
                                 <th>Update</th>
                                 <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @isset($listSocial)
-                                @foreach($listSocial as $social)
+                            @isset($listMenu)
+                                @foreach($listMenu as $menu)
                                 <tr class="text-center">
-                                    <td>{{ $social->id }}</td>
+                                    <td>{{ $menu->id }}</td>
                                     <td><a href="{{ $social->url }}" style="text-decoration: underline;"  target="_blank">{{ $social->url }}</a></td>
                                     <td><i class="{{ $social->icon }}" style="font-size: 3rem;"></i></td>
                                     <td>
