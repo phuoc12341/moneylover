@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('style')
-    <link href="bower_components/moneylover-bower/fontawesome-iconpicker/fontawesome-iconpicker.min.css" rel="stylesheet" type="text/css" />
-    <link href="css/datatables.bundle.css" rel="stylesheet" type="text/css" />
+
 @endsection
 
 @section('content')
@@ -31,7 +30,7 @@
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
                             <h3 class="m-portlet__head-text">
-                                List Social
+                                List Menu
                             </h3>
                         </div>
                     </div>
@@ -41,7 +40,7 @@
                                 <a href="{{ route('menu.create') }}" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
                                     <span>
                                         <i class="la la-plus"></i>
-                                        <span>New Social</span>
+                                        <span>New Menu</span>
                                     </span>
                                 </a>
                             </li>
@@ -69,13 +68,16 @@
                                 @foreach($listMenu as $menu)
                                 <tr class="text-center">
                                     <td>{{ $menu->id }}</td>
-                                    <td><a href="{{ $social->url }}" style="text-decoration: underline;"  target="_blank">{{ $social->url }}</a></td>
-                                    <td><i class="{{ $social->icon }}" style="font-size: 3rem;"></i></td>
+                                    <td><a href="{{ $menu->about_us }}" style="text-decoration: underline;"  target="_blank">{{ $menu->about_us }}</a></td>
+                                    <td><a href="{{ $menu->privacy_policy }}" style="text-decoration: underline;"  target="_blank">{{ $menu->privacy_policy }}</a></td>
+                                    <td><a href="{{ $menu->career }}" style="text-decoration: underline;"  target="_blank">{{ $menu->career }}</a></td>
+                                    <td><img class="" src="{{ asset('storage/' . $menu->first_logo) }}"style="display: inline-block; width: 5rem; height: 5rem;"></td>
+                                    <td><img class="" src="{{ asset('storage/' . $menu->not_first_logo) }}" style="display: inline-block; width: 5rem; height: 5rem;"></td>
                                     <td>
-                                        <a href="{{ route('social.edit', ['id' => $social->id]) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                                        <a href="{{ route('menu.edit', ['id' => $menu->id]) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
                                     </td>
                                     <td>
-                                        <form action="{{ route('social.destroy', ['id' => $social->id]) }}" method="POST">
+                                        <form action="{{ route('menu.destroy', ['id' => $menu->id]) }}" method="POST">
                                             @method('DELETE')
                                             @csrf
                                             <button class="btn btn-danger" type="submit"><i class="fas fa-trash-alt"></i></button>
@@ -98,23 +100,5 @@
 @endsection
 
 @section('script')
-    <script src="bower_components/moneylover-bower/fontawesome-iconpicker/fontawesome-iconpicker.js" type="text/javascript"></script>
-    <script src="js/basic.js" type="text/javascript"></script>
-    <script src="js/datatables.bundle.js" type="text/javascript"></script>
-    <script>
-        $(".iconpicker").iconpicker({
-            placement: 'bottomLeft',
-            animation: true,
-            hideOnSelect: true,
-            inputSearch: true,
-        });
 
-
-        $('.iconpicker').on('iconpickerSelected', function(event){
-            $icon = $(this).find("i").attr('class');
-            $iconInput = $(this).parent().prev().find("input[name='icon']");
-            $iconInput.val($icon);
-        });
-
-    </script>
 @endsection

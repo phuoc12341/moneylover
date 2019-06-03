@@ -51,14 +51,16 @@ class MenuController extends Controller
         if ($request->hasFile('first_logo')) {
             if ($request->file('first_logo')->isValid()) {
                 $path = $request->first_logo->store(config('custom.file_storage.upload_path'));
-                $menu->first_logo = $path;      
+                $path = str_replace('public/', '', $path);
+                $menu->first_logo = $path;
             }
         };
 
         if ($request->hasFile('not_first_logo')) {
             if ($request->file('not_first_logo')->isValid()) {
                 $path = $request->not_first_logo->store(config('custom.file_storage.upload_path'));
-                $menu->not_first_logo = $path;      
+                $path = str_replace('public/', '', $path);
+                $menu->not_first_logo = $path;
             }
         };
 
