@@ -54,11 +54,10 @@
                         <thead>
                             <tr class="text-center">
                                 <th>ID</th>
-                                <th>About Us</th>
-                                <th>Privacy Policy</th>
-                                <th>Career</th>
-                                <th>First Logo</th>
-                                <th>Not First Logo</th>
+                                <th>Name</th>
+                                <th>Link</th>
+                                <th>Type</th>
+                                <th>Order</th>
                                 <th>Update</th>
                                 <th>Delete</th>
                             </tr>
@@ -68,11 +67,19 @@
                                 @foreach($listMenu as $menu)
                                 <tr class="text-center">
                                     <td>{{ $menu->id }}</td>
-                                    <td><a href="{{ $menu->about_us }}" style="text-decoration: underline;"  target="_blank">{{ $menu->about_us }}</a></td>
-                                    <td><a href="{{ $menu->privacy_policy }}" style="text-decoration: underline;"  target="_blank">{{ $menu->privacy_policy }}</a></td>
-                                    <td><a href="{{ $menu->career }}" style="text-decoration: underline;"  target="_blank">{{ $menu->career }}</a></td>
-                                    <td><img class="" src="{{ asset('storage/' . $menu->first_logo) }}"style="display: inline-block; width: 5rem; height: 5rem;"></td>
-                                    <td><img class="" src="{{ asset('storage/' . $menu->not_first_logo) }}" style="display: inline-block; width: 5rem; height: 5rem;"></td>
+                                    <td><p>{{ $menu->name }}</p></td>
+                                    <td><a href="{{ $menu->link }}" style="text-decoration: underline;"  target="_blank">{{ $menu->link }}</a></td>
+                                    @if ($menu->type == config('custom.menu.header_menu'))
+                                        <td><span class="m-badge m-badge--success m-badge--wide">Header</span>
+                                    @elseif ($menu->type == config('custom.menu.footer_menu'))</td>
+                                        <td><span class="m-badge m-badge--brand m-badge--wide">Footer</span></td>
+                                    @endif
+
+                                    <td>
+                                        @isset($menu->order))
+                                            <span class="m-badge m-badge--light m-badge--bordered m-badge-bordered--info">{{ $menu->order }}</span>
+                                        @endisset
+                                    </td>
                                     <td>
                                         <a href="{{ route('menu.edit', ['id' => $menu->id]) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
                                     </td>
