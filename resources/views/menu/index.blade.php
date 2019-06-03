@@ -85,6 +85,7 @@
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-danger show-modal" data-toggle="modal" data-target="#m_modal" data-menu-id="{{ $menu->id }}"><i class="fas fa-trash-alt"></i></button>
+
                                     </td>
                                 </tr>
                                 @endforeach
@@ -144,3 +145,4 @@
         });
     </script>
 @endsection
+
