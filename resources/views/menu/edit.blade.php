@@ -1,12 +1,18 @@
 @extends('layouts.app')
 
 @section('style')
-
+    <link href="bower_components/moneylover-bower/fontawesome-iconpicker/fontawesome-iconpicker.min.css" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
         <div class="row">
         <div class="col-lg-12">
+            @if(session()->has('success'))
+                <div class="alert alert-success">
+                    {{ session()->get('success') }}
+                </div>
+            @endif
+
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -26,38 +32,39 @@
                                 <i class="la la-gear"></i>
                             </span>
                             <h3 class="m-portlet__head-text">
-                                Form Create Menu 
+                                Form Create Social 
                             </h3>
                         </div>
                     </div>
                 </div>
 
                 <!--begin::Form-->
-                <form class="m-form" action="{{ route('menu.store') }}" method="POST" enctype="multipart/form-data">
+                <form class="m-form" action="{{ route('menu.update', ['id' => $menu->id]) }}" method="POST">
+                    @method('PUT')
                     @csrf
                     <div class="m-portlet__body">
                         <div class="khoi" data-index=1>
                             <div class="m-form__section m-form__section--first">
                                 <div class="form-group m-form__group">
                                     <label for="example_input_full_name">Name</label>
-                                    <input type="text" name="name" class="form-control m-input" placeholder="Enter name" value="{{ old('name') }}">
+                                    <input type="text" name="name" class="form-control m-input" placeholder="Enter name" value="{{ $menu->name }}">
                                 </div>
                             </div>
                             <div class="m-form__section m-form__section--first">
                                 <div class="form-group m-form__group">
-                                    <label for="example_input_full_name">URL for name</label>
-                                    <input type="text" name="link" class="form-control m-input" value="{{ old('link') }}" placeholder="Enter URL for Privacy Policy">
+                                    <label for="example_input_full_name">Link URL for name</label>
+                                    <input type="text" name="link" class="form-control m-input" value="{{ $menu->link }}" placeholder="Enter Link URL for Name">
                                 </div>
                             </div>
                             <div class="m-form__group form-group">
                                 <label>Type</label>
                                 <div class="m-radio-list">
                                     <label class="m-radio m-radio--state-success">
-                                        <input type="radio" name="type" value="{{ config('custom.menu.header_menu') }}" checked> Header Menu
+                                        <input type="radio" name="type" value="{{ config('custom.menu.header_menu') }}" id="header-menu"> Header Menu
                                         <span></span>
                                     </label>
                                     <label class="m-radio m-radio--state-brand">
-                                        <input type="radio" name="type" value="{{ config('custom.menu.footer_menu') }}"> Footer Menu
+                                        <input type="radio" name="type" value="{{ config('custom.menu.footer_menu') }}" id="footer-menu"> Footer Menu
                                         <span></span>
                                     </label>
                                 </div>
@@ -65,7 +72,11 @@
                             <div class="m-form__section m-form__section--first">
                                 <div class="form-group m-form__group">
                                     <label for="example_input_full_name">Order</label>
-                                    <input type="number" name="order" class="form-control m-input" value="{{ old('order') }}" placeholder="Optional: Enter order of menu">
+                                    <input type="number" name="order" class="form-control m-input" placeholder="Optional: Enter order of menu"
+                                        @isset($menu->order)
+                                            value="{{ $menu->order }}"
+                                        @endisset
+                                    >
                                 </div>
                             </div>
                         </div>
@@ -88,5 +99,12 @@
 @endsection
 
 @section('script')
-
+    <script>
+        var typeMenu = {!! $menu->type !!}
+        if (typeMenu == 0) {
+            $("#header-menu").attr('checked', 'checked')
+        } else if (typeMenu == 1) {
+            $("#footer-menu").attr('checked', 'checked')
+        }
+    </script>
 @endsection

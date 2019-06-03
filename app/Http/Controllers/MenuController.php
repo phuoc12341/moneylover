@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Menu;
-use App\Http\Requests\MenuRequest;
+use App\Http\Requests\Menu\CreateMenuRequest;
+use App\Http\Requests\Menu\UpdateMenuRequest;
 
 class MenuController extends Controller
 {
@@ -41,32 +42,19 @@ class MenuController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MenuRequest $request)
+    public function store(CreateMenuRequest $request)
     {
         $menu = new Menu;
-        $menu->about_us = $request->about_us;
-        $menu->privacy_policy = $request->privacy_policy;
-        $menu->career = $request->career;
-
-        if ($request->hasFile('first_logo')) {
-            if ($request->file('first_logo')->isValid()) {
-                $path = $request->first_logo->store(config('custom.file_storage.upload_path'));
-                $path = str_replace('public/', '', $path);
-                $menu->first_logo = $path;
-            }
-        };
-
-        if ($request->hasFile('not_first_logo')) {
-            if ($request->file('not_first_logo')->isValid()) {
-                $path = $request->not_first_logo->store(config('custom.file_storage.upload_path'));
-                $path = str_replace('public/', '', $path);
-                $menu->not_first_logo = $path;
-            }
-        };
+        $menu->name = $request->name;
+        $menu->link = $request->link;
+        $menu->type = $request->type;
+        if (isset($request->order)) {
+            $menu->order = $request->order;
+        }
 
         $menu->save();
 
-        return redirect()->route('menu.index', __('messages.success_create_social'));
+        return redirect()->route('menu.index')->with('success', __('messages.success_create_menu'));
     }
 
     /**
@@ -88,7 +76,9 @@ class MenuController extends Controller
      */
     public function edit($id)
     {
-        //
+        $menu = Menu::find($id);
+
+        return view('menu.edit', ['menu' => $menu]);
     }
 
     /**
@@ -98,9 +88,20 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateMenuRequest $request, $id)
     {
-        //
+        $menu = Menu::find($id);
+        $menu->name = $request->name;
+        $menu->link = $request->link;
+        $menu->type = $request->type;
+
+        if (isset($request->order)) {
+            $menu->order = $request->order;
+        }
+        
+        $menu->save();
+
+        return redirect()->back()->with('success', __('messages.success_update_menu'));
     }
 
     /**
@@ -111,6 +112,9 @@ class MenuController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $menu = Menu::find($id);
+        $menu->delete();
+
+        return redirect()->back()->with('success', __('messages.success_delete_menu'));
     }
 }
