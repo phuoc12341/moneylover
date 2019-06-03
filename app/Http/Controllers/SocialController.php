@@ -48,7 +48,7 @@ class SocialController extends Controller
         $social->icon = $request->icon;
         $social->save();
 
-        return redirect()->route('social.index', __('messages.success_create_social'));
+        return redirect()->route('social.index')->with('success', __('messages.success_create_social'));
     }
 
     /**
