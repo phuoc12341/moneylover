@@ -67,7 +67,7 @@
                                 @foreach($listMenu as $menu)
                                 <tr class="text-center">
                                     <td>{{ $menu->id }}</td>
-                                    <td><p>{{ $menu->name }}</p></td>
+                                    <td><p class="name">{{ $menu->name }}</p></td>
                                     <td><a href="{{ $menu->link }}" style="text-decoration: underline;"  target="_blank">{{ $menu->link }}</a></td>
                                     @if ($menu->type == config('custom.menu.header_menu'))
                                         <td><span class="m-badge m-badge--success m-badge--wide">Header</span>
@@ -76,7 +76,7 @@
                                     @endif
 
                                     <td>
-                                        @isset($menu->order))
+                                        @isset($menu->order)
                                             <span class="m-badge m-badge--light m-badge--bordered m-badge-bordered--info">{{ $menu->order }}</span>
                                         @endisset
                                     </td>
@@ -84,11 +84,7 @@
                                         <a href="{{ route('menu.edit', ['id' => $menu->id]) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
                                     </td>
                                     <td>
-                                        <form action="{{ route('menu.destroy', ['id' => $menu->id]) }}" method="POST">
-                                            @method('DELETE')
-                                            @csrf
-                                            <button class="btn btn-danger" type="submit"><i class="fas fa-trash-alt"></i></button>
-                                        </form>
+                                        <button type="button" class="btn btn-danger show-modal" data-toggle="modal" data-target="#m_modal" data-menu-id="{{ $menu->id }}"><i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -97,15 +93,54 @@
                     </table>
                 </div>
             </div>
-        </div>
-
             <!--end::Portlet-->
+        </div>
 
         </div>
 
-    </div>
+        <div class="modal fade" id="m_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <p class="modal-title">Delete Menu - </p>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Do you really want to delete this menu ?</p>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        <form action="{{ route('menu.destroy', ['id' => '']) }}" method="POST">
+                            @method('DELETE')   
+                            @csrf
+                            <button class="btn btn-danger" type="submit">Yes</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 @endsection
 
 @section('script')
+    <script>
+        $(document).ready(function() {
+            var $baseActionDelete = $('#m_modal').find('form').attr('action');
 
+            $('.show-modal').click(function() {
+                let $nameOfMenu = $(this).parents('tr').find('.name');
+                $nameOfMenu = $nameOfMenu.text();
+
+                $menuID = $(this).data('menu-id')
+                $form = $('#m_modal').find('form')
+                $form.attr('action', $baseActionDelete + '/' + $menuID);
+                $modalContent = $('#m_modal').find('p.modal-title');
+                $modalContent.children().remove();
+                $modalContent.append('<span class="m--font-danger">' + $nameOfMenu + '</span>')
+            });
+        });
+    </script>
 @endsection
