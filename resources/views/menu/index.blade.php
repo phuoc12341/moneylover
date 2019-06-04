@@ -109,7 +109,6 @@
                     </div>
                     <div class="modal-body">
                         <p>Do you really want to delete this menu ?</p>
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
@@ -144,3 +143,4 @@
         });
     </script>
 @endsection
+
