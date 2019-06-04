@@ -16,6 +16,7 @@ Route::get('/', 'IndexController@index');
 Route::resource('setting', 'SettingController');
 Route::resource('social', 'SocialController');
 Route::resource('menu', 'MenuController');
+Route::resource('slide', 'SlideController');
 
 Auth::routes();
 
