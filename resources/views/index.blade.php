@@ -28,11 +28,32 @@
                     <button class="btn languege-for-mobile d-block d-lg-none float-right" type="button" data-toggle="modal" data-target="#languageModal">English <span class="caret"></span>
                     </button>
                 </div>
-                <div class="col-sm-12 notFirstHeader">
-                    <img class="col-12 col-md-6" src="images/logo2.svg" alt="" height="40px">
-                    <div class="d-none col-md-6 d-sm-block float-right edit-label">
-                        <a href="https://web.moneylover.me" target="_blank" class="btn btn-primary btn-lg mr-3 edit-pading">Try on browser</a>
-                        <button class="btn btn-secondary">Download for free</button>
+                <div class="col-sm-12 notFirstHeader d-none">
+                    <img src="images/logo2.svg" alt="" height="40px">
+                    <div class="float-right">
+
+                        @isset($headerMenu)
+                            @foreach($headerMenu as $menu)
+                                @php
+                                    $baseCurrentURL = Request::url();
+                                    $isCurrentPage = strpos($menu->link, $baseCurrentURL);
+                                    if ($isCurrentPage === 0) {
+                                        $isCurrentPage = true;
+                                    }
+                                @endphp
+                                <a href="{{ $menu->link }}"
+                                    @if (!$isCurrentPage)
+                                        target="_blank"
+                                    @endif
+                                    
+                                    @if (!$loop->last)
+                                        class="btn btn-primary btn-lg mr-3"
+                                    @else
+                                        class="btn btn-primary btn-lg"
+                                    @endif
+                                >{{ $menu->name }}</a>
+                            @endforeach
+                        @endisset
                     </div>
                 </div>
             </div>
@@ -325,10 +346,10 @@
                                 <div class="d-none d-md-block col-lg-6 padding-for-chatbox text-right-not-mobile">
                                 @isset($footerMenu)
                                 @foreach($footerMenu as $menu)
-                                    @if ($loop->last)
+                                    <a href="{{ $menu->link }}" class="inPolicy" target="_blank"><strong>{{ $menu->name }}</strong></a>
+                                    @if (! $loop->last && !$loop->first)
                                         |
                                     @endif
-                                    <a href="{{ $menu->link }}" class="inPolicy" target="_blank"><strong>{{ $menu->name }}</strong></a>
                                     @if ($loop->first)
                                         <br>
                                     @endif
@@ -360,16 +381,3 @@
     </script>
 </body>
 </html>
-<!-- $(function(){
-    $(window).resize(function() {
-        $("span").html($(window).width());
-    });
-});
-
-    onresize functuion ()
-    if (window.with() < 576) {
-        $(.dangcohieuung).removeClass('animated');
-        $(.dangcohieuung).css('back-color:red;');
-    } else (
-        $(.dangcohieuung).addClass('animated');
-    ) -->
