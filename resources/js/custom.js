@@ -31,9 +31,10 @@ $( document ).ready(function() {
             } 
 
             if (destination.index == 6) {
-                $(".header").find(".notFirstHeader").find("button").addClass("d-none");
+                $(".header").find(".notFirstHeader").find("a:last-child").addClass("d-none");
+                console.log($(".header").find(".notFirstHeader").find("a:last-child"))
             } else {
-                $(".header").find(".notFirstHeader").find("button").removeClass("d-none");
+                $(".header").find(".notFirstHeader").find("a:last-child").removeClass("d-none");
             }
 
         },
