@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Slide;
+use Illuminate\Support\Arr;
 
 class SlideController extends Controller
 {
@@ -63,7 +64,9 @@ class SlideController extends Controller
      */
     public function edit($id)
     {
-        //
+        $slide = Slide::find($id);
+
+        return view('slide.edit' . $id, ['slide' => $slide]);
     }
 
     /**
@@ -75,7 +78,22 @@ class SlideController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $allRequestParameter = $request->all();
+        $arrValue = Arr::except($allRequestParameter, ['_method', '_token', '_key', 'order']);
+        dd($arrValue);
+        $valueJsonEncoded = json_encode($arrValue);
+    dd($valueJsonEncoded);
+        $slide = Slide::find($id);
+        $slide->key = $request->key;
+        $slide->value = $valueJsonEncoded;
+
+        if (isset($request->order)) {
+            $slide->order = $request->order;
+        }
+
+        $slide->save();
+
+        return redirect()->route('slide.index');
     }
 
     /**
