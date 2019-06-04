@@ -84,7 +84,7 @@
                                         <a href="{{ route('menu.edit', ['id' => $menu->id]) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-danger show-modal" data-toggle="modal" data-target="#m_modal"><i class="fas fa-trash-alt"></i></button>
+                                        <button type="button" class="btn btn-danger show-modal" data-toggle="modal" data-target="#m_modal" data-menu-id="{{ $menu->id }}"><i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -109,7 +109,6 @@
                     </div>
                     <div class="modal-body">
                         <p>Do you really want to delete this menu ?</p>
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
@@ -127,13 +126,21 @@
 
 @section('script')
     <script>
-        $('.show-modal').click(function() {
-            let $nameOfMenu = $(this).parents('tr').find('.name');
-            $nameOfMenu = $nameOfMenu.text();
-            
-            $modalContent = $('#m_modal').find('p.modal-title');
-            $modalContent.children().remove();
-            $modalContent.append('<span class="m--font-danger">' + $nameOfMenu + '</span>')
+        $(document).ready(function() {
+            var $baseActionDelete = $('#m_modal').find('form').attr('action');
+
+            $('.show-modal').click(function() {
+                let $nameOfMenu = $(this).parents('tr').find('.name');
+                $nameOfMenu = $nameOfMenu.text();
+
+                $menuID = $(this).data('menu-id')
+                $form = $('#m_modal').find('form')
+                $form.attr('action', $baseActionDelete + '/' + $menuID);
+                $modalContent = $('#m_modal').find('p.modal-title');
+                $modalContent.children().remove();
+                $modalContent.append('<span class="m--font-danger">' + $nameOfMenu + '</span>')
+            });
         });
     </script>
 @endsection
+
