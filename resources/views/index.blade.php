@@ -316,9 +316,17 @@
                                     <p class="m-0">© 2019  Money Lover. All rights reserved.</p>
                                 </div>
                                 <div class="col-lg-6 col-sm-6 col-12 padding-for-chatbox text-right-not-mobile">
-                                    <a href="https://finsify.com/" class="inPolicy" target="_blank" class="inPolicy">   <strong>About Us</strong></a>
-                                    <br>
-                                    <a href="https://moneylover.me/policy.html" class="inPolicy" target="_blank"><strong>Privacy Policy</strong></a> | <a href="https://moneylovercareerblog.tumblr.com" class="inPolicy" target="_blank"><strong>Career</strong></a>
+                                @isset($footerMenu)
+                                @foreach($footerMenu as $menu)
+                                    @if ($loop->last)
+                                        |
+                                    @endif
+                                    <a href="{{ $menu->link }}" class="inPolicy" target="_blank"><strong>{{ $menu->name }}</strong></a>
+                                    @if ($loop->first)
+                                        <br>
+                                    @endif
+                                @endforeach
+                                @endisset
                                 </div>
                             </div>
                         </div>

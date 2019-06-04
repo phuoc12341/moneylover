@@ -11,11 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', 'IndexController@index');
 
-
+Route::resource('setting', 'SettingController');
+Route::resource('social', 'SocialController');
+Route::resource('menu', 'MenuController');
 
 Auth::routes();
 

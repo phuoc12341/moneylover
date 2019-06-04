@@ -21,6 +21,8 @@ License: You must have a valid license purchased only from themeforest(the above
         <meta name="description" content="Latest updates and statistic charts">
         <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"> -->
 
+        <base href="{{ asset('/') }}" />
+
         <!--begin::Web font -->
         <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
         <script>
@@ -33,6 +35,8 @@ License: You must have a valid license purchased only from themeforest(the above
                 }
             });
         </script>
+        
+        @yield('style')
 
         <!--end::Page Vendors -->
         <link href="bower_components/moneylover-bower/admin_layout/css/vendors.bundle.css" rel="stylesheet" type="text/css" />
@@ -277,37 +281,25 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <i class="m-menu__section-icon flaticon-more-v3"></i>
                             </li>
                             <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
-                                <a href="javascript:;" class="m-menu__link m-menu__toggle">
+                                <a href="{{ route('setting.create') }}" class="m-menu__link m-menu__toggle">
                                     <i class="m-menu__link-icon flaticon-layers"></i>
-                                    <span class="m-menu__link-text">Setting</span>
+                                        <span class="m-menu__link-text">Setting</span>
                                     <i class="m-menu__ver-arrow la la-angle-right"></i>
                                 </a>
-                                <div class="m-menu__submenu ">
-                                    <span class="m-menu__arrow"></span>
-                                    <ul class="m-menu__subnav">
-                                        <li class="m-menu__item  m-menu__item--parent" aria-haspopup="true">
-                                            <span class="m-menu__link">
-                                                <span class="m-menu__link-text">Base</span>
-                                            </span>
-                                        </li>
-                                        <li class="m-menu__item " aria-haspopup="true">
-                                            <a href="components/base/state.html" class="m-menu__link ">
-                                                <i class="m-menu__link-bullet m-menu__link-bullet--dot">
-                                                    <span></span>
-                                                </i>
-                                                <span class="m-menu__link-text">List</span>
-                                            </a>
-                                        </li>
-                                        <li class="m-menu__item " aria-haspopup="true">
-                                            <a href="components/base/state.html" class="m-menu__link ">
-                                                <i class="m-menu__link-bullet m-menu__link-bullet--dot">
-                                                    <span></span>
-                                                </i>
-                                                <span class="m-menu__link-text">Create</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
+                            </li>
+                            <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+                                    <a href="{{ route('social.index') }}" class="m-menu__link m-menu__toggle">
+                                    <i class="m-menu__link-icon flaticon-layers"></i>
+                                    <span class="m-menu__link-text">Social</span>
+                                    <i class="m-menu__ver-arrow la la-angle-right"></i>
+                                </a>
+                            </li>
+                            <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+                                    <a href="{{ route('menu.index') }}" class="m-menu__link m-menu__toggle">
+                                    <i class="m-menu__link-icon flaticon-layers"></i>
+                                    <span class="m-menu__link-text">Menu</span>
+                                    <i class="m-menu__ver-arrow la la-angle-right"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -405,10 +397,9 @@ License: You must have a valid license purchased only from themeforest(the above
         <!--begin::Base Scripts -->
         <script src="bower_components/moneylover-bower/admin_layout/js/vendors.bundle.js" type="text/javascript"></script>
         <script src="bower_components/moneylover-bower/admin_layout/js/scripts.bundle.js" type="text/javascript"></script>
-
         <!--end::Base Scripts -->
+        @yield('script')
 
     </body>
-
     <!-- end::Body -->
 </html>

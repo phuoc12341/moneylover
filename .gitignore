@@ -14,3 +14,4 @@ yarn-error.log
 /public/js
 /public/bower_components
 /public/mix-manifest.json
+/upload/images
