@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Slide;
+
 class SlideController extends Controller
 {
     /**
@@ -13,7 +15,12 @@ class SlideController extends Controller
      */
     public function index()
     {
-        //
+        $listSlide = Slide::all();
+        $compact = [
+            'listSlide' => $listSlide,
+        ];
+
+        return view('slide.index', $compact);
     }
 
     /**
