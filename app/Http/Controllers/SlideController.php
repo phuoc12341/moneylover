@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 
 use App\Models\Slide;
 use Illuminate\Support\Arr;
-
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 
 class SlideController extends Controller
@@ -82,26 +80,25 @@ class SlideController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $slide = Slide::find($id);
-        $slide->value = json_decode($slide->value);
-        $arrImageOriginal = [];
-        $textLogoImageOriginal = '';
-
-        if (isset($slide->value->image)) {
-            $arrImageOriginal = $slide->value->image;
-        }
-
-        if (isset($slide->value->text_logo)) {
-            $textLogoImageOriginal = $slide->value->text_logo;
-        }
-
-        $allRequestParameter = $request->all();
-        $allRequestParameter = Arr::except($allRequestParameter, ['_method', '_token', '_key', 'order']);
-        $allRequestParameter['image'] = $arrImageOriginal;
-        $allRequestParameter['text_logo'] = $textLogoImageOriginal;
-
         switch ($id) {
             case 1:
+                $slide = Slide::find($id);
+                $slide->value = json_decode($slide->value);
+                $arrImageOriginal = [];
+                $textLogoImageOriginal = '';
+        
+                if (isset($slide->value->image)) {
+                    $arrImageOriginal = $slide->value->image;
+                }
+        
+                if (isset($slide->value->text_logo)) {
+                    $textLogoImageOriginal = $slide->value->text_logo;
+                }
+        
+                $allRequestParameter = $request->all();
+                $allRequestParameter = Arr::except($allRequestParameter, ['_method', '_token', '_key', 'order']);
+                $allRequestParameter['image'] = $arrImageOriginal;
+                $allRequestParameter['text_logo'] = $textLogoImageOriginal;
                 if ($request->hasFile('image')) {
                     foreach ($request->file('image') as $key => $image) {
                         if ($image->isValid()) {
@@ -134,7 +131,28 @@ class SlideController extends Controller
                 };
 
                 break;
-            
+            case 2:
+                $allRequestParameter = $request->all();
+                if ($request->hasFile('file')) {
+                    $file = $request->file;
+                    $name = $request->file->getClientOriginalName();
+                    $name = str_random(5).$name;
+                    $file->move(config('app.img_path'), $name);
+                }
+                $file_1 = [];
+                if($request->hasFile('file_1')) {
+                    foreach ($request->file('file_1') as $item) {
+                        $name = $item->getClientOriginalName();
+                        $newName = str_random(5) . $name;
+                        $item->move(config('app.img_path'), $newName);
+                        $file_1[] = ['img' => $newName];
+                    }
+                            }
+                $allRequestParameter = Arr::except($allRequestParameter, ['_method', '_token', '_key', 'order']);
+                $allRequestParameter = array_replace($allRequestParameter, ['file_1' => $file_1]);
+                $allRequestParameter = array_replace($allRequestParameter, ['file' => $name]);
+
+                break;
             default:
 
                 break;
@@ -151,6 +169,7 @@ class SlideController extends Controller
         $slide->save();
 
         return redirect()->route('slide.index');
+
     }
 
     /**
