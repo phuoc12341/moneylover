@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\Slide;
 use Illuminate\Support\Arr;
 
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Storage;
+
 class SlideController extends Controller
 {
     /**
@@ -65,6 +68,7 @@ class SlideController extends Controller
     public function edit($id)
     {
         $slide = Slide::find($id);
+        $slide->value = json_decode($slide->value);
 
         return view('slide.edit' . $id, ['slide' => $slide]);
     }
@@ -78,12 +82,65 @@ class SlideController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $allRequestParameter = $request->all();
-        $arrValue = Arr::except($allRequestParameter, ['_method', '_token', '_key', 'order']);
-        dd($arrValue);
-        $valueJsonEncoded = json_encode($arrValue);
-    dd($valueJsonEncoded);
         $slide = Slide::find($id);
+        $slide->value = json_decode($slide->value);
+        $arrImageOriginal = [];
+        $textLogoImageOriginal = '';
+
+        if (isset($slide->value->image)) {
+            $arrImageOriginal = $slide->value->image;
+        }
+
+        if (isset($slide->value->text_logo)) {
+            $textLogoImageOriginal = $slide->value->text_logo;
+        }
+
+        $allRequestParameter = $request->all();
+        $allRequestParameter = Arr::except($allRequestParameter, ['_method', '_token', '_key', 'order']);
+        $allRequestParameter['image'] = $arrImageOriginal;
+        $allRequestParameter['text_logo'] = $textLogoImageOriginal;
+
+        switch ($id) {
+            case 1:
+                if ($request->hasFile('image')) {
+                    foreach ($request->file('image') as $key => $image) {
+                        if ($image->isValid()) {
+                            $path = $image->store(config('custom.file_storage.upload_path'));
+                            $path = str_replace('public/', '', $path);
+                            if (isset($arrImageOriginal[$key])) {
+                                Storage::delete('public/' . $arrImageOriginal[$key]);
+                            }
+
+                            $allRequestParameter['image'][$key] = $path;
+
+                            $allRequestParameter['image'] = array_replace($arrImageOriginal, $allRequestParameter['image']);
+
+                        }
+                    }
+                };
+
+                if ($request->hasFile('text_logo')) {
+                    if ($request->file('text_logo')->isValid()) {
+                        $textLogoImageRequest = $request->file('text_logo');
+                        $path = $textLogoImageRequest->store(config('custom.file_storage.upload_path'));
+                        $path = str_replace('public/', '', $path);
+
+                        if (empty($textLogoImageOriginal)) {
+                            Storage::delete('public/' . $textLogoImageOriginal);
+                        }
+
+                        $allRequestParameter['text_logo'] = $path;
+                    }
+                };
+
+                break;
+            
+            default:
+
+                break;
+        }
+
+        $valueJsonEncoded = json_encode($allRequestParameter);
         $slide->key = $request->key;
         $slide->value = $valueJsonEncoded;
 
