@@ -80,9 +80,9 @@ class SlideController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $slide = Slide::find($id);
         switch ($id) {
             case 1:
-                $slide = Slide::find($id);
                 $slide->value = json_decode($slide->value);
                 $arrImageOriginal = [];
                 $textLogoImageOriginal = '';
@@ -153,6 +153,41 @@ class SlideController extends Controller
                 $allRequestParameter = array_replace($allRequestParameter, ['file' => $name]);
 
                 break;
+
+            case 5:
+                $slide->value = json_decode($slide->value);
+                $allRequestParameter = $request->all();
+                $allRequestParameter = Arr::except($allRequestParameter, ['_method', '_token', '_key', 'order']);
+
+                foreach ($slide->value as $key => $carousel) {
+                    if (isset($carousel->image)) {
+                        $allImageRequest['carousel'][$key]['image'] = $carousel->image;
+                    }
+                }
+
+                $allImageRequest = $request->allFiles();
+
+                if (!empty($allImageRequest)) {
+                    foreach ($allImageRequest['carousel'] as $key => $carousel) {
+                        if ($carousel['image']->isValid()) {
+                            $path = $carousel['image']->store(config('custom.file_storage.upload_path'));
+                            $path = str_replace('public/', '', $path);
+
+                            if (isset($slide->value->carousel[$key]->image)) {
+                                Storage::delete('public/' . $slide->value->carousel[$key]->image);
+                            }
+
+                            $allRequestParameter['carousel'][$key]['image'] = $path;
+                        }
+                    }
+                }
+
+                break;
+
+            case 6:
+
+                break;
+
             default:
 
                 break;
