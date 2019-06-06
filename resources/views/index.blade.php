@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <base href="{{asset('/')}}" target="_blank">
     <link rel="stylesheet" type="text/css" href="bower_components/moneylover-bower/fullpage/fullpage.css"/>
     <link rel="stylesheet" type="text/css" href="css/app.css"/>
     <link rel="stylesheet" type="text/css" href="bower_components/moneylover-bower/animate.css"/>
@@ -118,7 +119,7 @@
                             <div class="row">
                                 <div class="col-lg-5 col-sm-12 col-12 trai">
                                     {{-- <img class="col-12 col-sm-12 col-md-12 animated fadeInUp" src="images/logo_text.svg"> --}}
-                                    <img class="col-12 col-sm-12 col-md-12 animated fadeInUp" src="storage/{{ $listSlide[0]->value->text_logo }}">
+                                    <img class="col-12 col-sm-12 col-md-12 animated fadeInUp" src="{{ Storage::url($listSlide[0]->value->text_logo) }}">
                                     <p class="animated fadeInUp">Simplest way to manage personal finances.<br>
                                   Because money matters.</p>
                                     <div class="contain2button animated fadeInUp">
