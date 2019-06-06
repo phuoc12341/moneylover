@@ -29,8 +29,8 @@
                     </button>
                 </div>
                 <div class="col-sm-12 notFirstHeader d-none">
-                    <img src="images/logo2.svg" alt="" height="40px">
-                    <div class="float-right">
+                    <img class="col-12 col-md-6" src="images/logo2.svg" alt="" height="40px">
+                    <div class="d-none col-md-6 d-sm-block float-right edit-label">
 
                         @isset($headerMenu)
                             @foreach($headerMenu as $menu)
@@ -102,7 +102,7 @@
 
     <div id="video">
         <div>
-            <iframe class="animated zoomIn" width="640" height="360" src="https://www.youtube.com/embed/jSv7DUqZ3pk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe class="animated zoomIn" width="640" height="360" src="{{ $listSlide[1]['value'][0]['url_youtube'] }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <button class="close">
             <span class="iconclosevideo"></span>
@@ -151,9 +151,10 @@
                     </div>
                     <div class="col-lg-5 offset-lg-1 col-md-10 offset-md-1 col-sm-12 col-12 text">
                         <div>
-                            <h3 class="animated fadeInUp center">An intuitive and cross-platform finance app</h3>
-                            <iframe width="100%" src="https://www.youtube.com/embed/jSv7DUqZ3pk" frameborder="0" class="d-block d-lg-none boder" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen"></iframe>
-                            <p class="animated fadeInUp col-12 col-sm-12 col-md-12">Money Lover helps you get just about everything managed. A smart, easy-to-use app that allows you to track and categorize your in-and-out money, create budgets that you can actually stick to. It works seamlessly across devices and platforms, available on phone, tablet, PC and Web.</p>
+                            <h3 class="animated fadeInUp center">{{ $listSlide[1]['value'][0]['describe'] }}</h3>
+                            <iframe width="100%" src="{{ $listSlide[1]['value'][0]['url_youtube'] }}" frameborder="0" class="d-block d-lg-none boder" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen"></iframe>
+
+                            <p class="animated fadeInUp col-12 col-sm-12 col-md-12">{!! $listSlide[1]['value'][0]['content'] !!}.</p>
                         </div>
                     </div>
                 </div>
@@ -375,6 +376,12 @@
             } else {
                 $('#section_1').removeClass('resetHeight');
                 $('.fp-tableCell').removeClass('fitSection');
+            }
+        });
+        $(function(){
+            if ($(window).width() < 768) {
+                test = $('#section_5 .row .khoitrai');
+                test.addClass('hihe')
             }
         });
 
