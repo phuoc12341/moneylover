@@ -54,13 +54,13 @@
                             <div class="m-form__section m-form__section--first col-lg-6">
                                 <div class="form-group m-form__group">
                                     <label for="example_input_full_name">Describe 1</label><span class="text-danger"> *</span>
-                                    <textarea class="form-control" name="describe_1"></textarea>
+                                    <textarea class="form-control" name="describe_1">@if(isset($slide->value->describe_1)){{ $slide->value->describe_1 }}@endif</textarea>
                                 </div>
                             </div>
                             <div class="m-form__section m-form__section--first col-lg-6">
                                 <div class="form-group m-form__group">
                                     <label for="example_input_full_name">Content 1</label><span class="text-danger"> *</span>
-                                    <textarea class="form-control" name="content_1"></textarea>
+                                    <textarea class="form-control" name="content_1">@if(isset($slide->value->content_1)){{ $slide->value->content_1 }}@endif</textarea>
                                 </div>
                             </div>
                         </div>
@@ -74,40 +74,40 @@
                             <div class="m-form__section m-form__section--first col-lg-6">
                                 <div class="form-group m-form__group">
                                     <label for="example_input_full_name">Describe 2</label><span class="text-danger"> *</span>
-                                    <textarea class="form-control" name="describe_2"></textarea>
+                                    <textarea class="form-control" name="describe_2">@if(isset($slide->value->describe_2)){{ $slide->value->describe_2 }}@endif</textarea>
                                 </div>
                             </div>
                             <div class="m-form__section m-form__section--first col-lg-6">
                                 <div class="form-group m-form__group">
                                     <label for="example_input_full_name">Content 2</label><span class="text-danger"> *</span>
-                                    <textarea class="form-control" name="content_2"></textarea>
+                                    <textarea class="form-control" name="content_2">@if(isset($slide->value->content_2)){{ $slide->value->content_2 }}@endif</textarea>
                                 </div>
                             </div>
                         </div>
                         <div class="m-form__section m-form__section--first">
                             <div class="form-group m-form__group">
                                 <label for="example_input_full_name">Image for content 2</label><span class="text-danger"> *</span>
-                                <input type="file" name="file_1[]" class="form-control m-input" placeholder="Enter Link" value="" multiple>
+                                <input type="file" name="file_1[]" class="form-control m-input" multiple>
                             </div>
                         </div>
                         <div class="row">
                             <div class="m-form__section m-form__section--first col-lg-6">
                                 <div class="form-group m-form__group">
                                     <label for="example_input_full_name">Describe 3</label><span class="text-danger"> *</span>
-                                    <textarea class="form-control" name="describe_3"></textarea>
+                                    <textarea class="form-control" name="describe_3">@if(isset($slide->value->describe_3)){{ $slide->value->describe_3 }}@endif</textarea>
                                 </div>
                             </div>
                             <div class="m-form__section m-form__section--first col-lg-6">
                                 <div class="form-group m-form__group">
                                     <label for="example_input_full_name">Content 3</label><span class="text-danger"> *</span>
-                                    <textarea class="form-control" name="content_3"></textarea>
+                                    <textarea class="form-control" name="content_3">@if(isset($slide->value->content_3)){{ $slide->value->content_3 }}@endif</textarea>
                                 </div>
                             </div>
                         </div>
                         <div class="m-form__section m-form__section--first">
                             <div class="form-group m-form__group">
                                 <label for="example_input_full_name">Image for content 3</label><span class="text-danger"> *</span>
-                                <input type="file" name="file_3" class="form-control m-input" placeholder="Enter Link" value="">
+                                <input type="file" name="file_2[]" class="form-control m-input" multiple>
                             </div>
                         </div>
                     </div>

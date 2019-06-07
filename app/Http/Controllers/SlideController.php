@@ -67,7 +67,7 @@ class SlideController extends Controller
     {
         $slide = Slide::find($id);
         $slide->value = json_decode($slide->value);
-
+        // dd($slide->value);
         return view('slide.edit' . $id, ['slide' => $slide]);
     }
 
@@ -81,6 +81,7 @@ class SlideController extends Controller
     public function update(Request $request, $id)
     {
         $slide = Slide::find($id);
+
         switch ($id) {
             case 1:
                 $slide->value = json_decode($slide->value);
@@ -108,49 +109,109 @@ class SlideController extends Controller
                                 Storage::delete('public/' . $arrImageOriginal[$key]);
                             }
 
-                            $allRequestParameter['image'][$key] = $path;
+                        $allRequestParameter['image'][$key] = $path;
 
-                            $allRequestParameter['image'] = array_replace($arrImageOriginal, $allRequestParameter['image']);
+                        $allRequestParameter['image'] = array_replace($arrImageOriginal, $allRequestParameter['image']);
 
-                        }
                     }
-                };
-
-                if ($request->hasFile('text_logo')) {
-                    if ($request->file('text_logo')->isValid()) {
-                        $textLogoImageRequest = $request->file('text_logo');
-                        $path = $textLogoImageRequest->store(config('custom.file_storage.upload_path'));
-                        $path = str_replace('public/', '', $path);
-
-                        if (empty($textLogoImageOriginal)) {
-                            Storage::delete('public/' . $textLogoImageOriginal);
-                        }
-
-                        $allRequestParameter['text_logo'] = $path;
-                    }
-                };
-
-                break;
-            case 2:
-                $allRequestParameter = $request->all();
-                if ($request->hasFile('file')) {
-                    $file = $request->file;
-                    $name = $request->file->getClientOriginalName();
-                    $name = str_random(5).$name;
-                    $file->move(config('app.img_path'), $name);
                 }
-                $file_1 = [];
-                if($request->hasFile('file_1')) {
-                    foreach ($request->file('file_1') as $item) {
-                        $name = $item->getClientOriginalName();
-                        $newName = str_random(5) . $name;
-                        $item->move(config('app.img_path'), $newName);
+            };
+
+            if ($request->hasFile('text_logo')) {
+                if ($request->file('text_logo')->isValid()) {
+                    $textLogoImageRequest = $request->file('text_logo');
+                    $path = $textLogoImageRequest->store(config('custom.file_storage.upload_path'));
+                    $path = str_replace('public/', '', $path);
+
+                    if (empty($textLogoImageOriginal)) {
+                        Storage::delete('public/' . $textLogoImageOriginal);
+                    }
+
+                    $allRequestParameter['text_logo'] = $path;
+                }
+            };
+
+            break;
+            case 2:
+            $allRequestParameter = $request->all();
+            $allRequestParameter = Arr::except($allRequestParameter, ['_method', '_token', '_key', 'order']);
+
+            break;
+            case 3:
+            $slide->value = json_decode($slide->value);
+            $saveImage = '';
+            if (isset($slide->value->file)){
+                $saveImage = $slide->value->file;
+            }
+
+            $allRequestParameter = $request->all();
+            $allRequestParameter = Arr::except($allRequestParameter, ['_method', '_token', '_key', 'order']);
+            $allRequestParameter['file'] = $saveImage;
+            if ($request->hasFile('file')) {
+                $file = $request->file;
+                $name = $request->file->getClientOriginalName();
+                $nameFile = str_random(5).$name;
+                $file->move(config('app.img_path'), $nameFile);
+                if (isset($slide->value->file)) {
+                    unlink(config('app.img_path') . $slide->value->file);
+                }
+                $allRequestParameter['file'] = $nameFile;
+            }
+
+            $file_1 = [];
+            $saveImage_1 = [];
+            if (isset($slide->value->file_1)) {
+                $saveImage_1 = $slide->value->file_1;
+            }
+            $allRequestParameter['file_1'] = $saveImage_1;
+            // dd($slide->value->file_1);
+            if($request->hasFile('file_1')) {
+                foreach ($request->file('file_1') as $key => $item) {
+                    $name = $item->getClientOriginalName();
+                    $newName = str_random(5) . $name;
+                    $item->move(config('app.img_path'), $newName);
+                    if (isset($slide->value->file_1)) {
+                        foreach ($slide->value->file_1 as $item) {
+                            if (isset($item->img)) {
+                                unlink(config('app.img_path') . $item->img);
+                            }
+                        }
+
                         $file_1[] = ['img' => $newName];
                     }
+                }
+            }
+            $allRequestParameter['file_1'] = array_replace($saveImage_1, $file_1);
+
+            $file_2 = [];
+            $saveImage_2 = [];
+            if (isset($slide->value->file_2)) {
+                $saveImage_2 = $slide->value->file_2;
+            }
+            $allRequestParameter['file_2'] = $saveImage_2;
+            if($request->hasFile('file_2')) {
+                foreach ($request->file('file_2') as $item) {
+                    $name = $item->getClientOriginalName();
+                    $newName = str_random(5) . $name;
+                    $item->move(config('app.img_path'), $newName);
+                    if (isset($slide->value->file_2)) {
+                        foreach ($slide->value->file_2 as $key => $item) {
+                            if (isset($item->img)) {
+                                unlink(config('app.img_path') . $item->img);
                             }
-                $allRequestParameter = Arr::except($allRequestParameter, ['_method', '_token', '_key', 'order']);
-                $allRequestParameter = array_replace($allRequestParameter, ['file_1' => $file_1]);
-                $allRequestParameter = array_replace($allRequestParameter, ['file' => $name]);
+                        }
+                        $file_2[] = ['img' => $newName];
+                    }
+                }
+            }
+
+            $allRequestParameter['file_2'] = array_replace($saveImage_2, $file_2);
+            $allRequestParameter = Arr::except($allRequestParameter, ['_method', '_token', '_key', 'order']);
+            
+            break ;
+            case 4:
+                dd($request->all());
+            break;
 
                 break;
 
@@ -190,10 +251,11 @@ class SlideController extends Controller
 
             default:
 
-                break;
+            break;
         }
 
         $valueJsonEncoded = json_encode($allRequestParameter);
+            // dd($valueJsonEncoded);
         $slide->key = $request->key;
         $slide->value = $valueJsonEncoded;
 

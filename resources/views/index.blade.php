@@ -103,7 +103,7 @@
 
     <div id="video">
         <div>
-            <iframe class="animated zoomIn" width="640" height="360" src="{{ $listSlide[1]['value'][0]['url_youtube'] }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe class="animated zoomIn" width="640" height="360" src="{{ $listSlide[1]->value->url_youtube }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <button class="close">
             <span class="iconclosevideo"></span>
@@ -152,10 +152,10 @@
                     </div>
                     <div class="col-lg-5 offset-lg-1 col-md-10 offset-md-1 col-sm-12 col-12 text">
                         <div>
-                            <h3 class="animated fadeInUp center">{{ $listSlide[1]['value'][0]['describe'] }}</h3>
-                            <iframe width="100%" src="{{ $listSlide[1]['value'][0]['url_youtube'] }}" frameborder="0" class="d-block d-lg-none boder" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen"></iframe>
+                            <h3 class="animated fadeInUp center">{{ $listSlide[1]->value->describe }}</h3>
+                            <iframe width="100%" src="{{ $listSlide[1]->value->url_youtube }}" frameborder="0" class="d-block d-lg-none boder" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen"></iframe>
 
-                            <p class="animated fadeInUp col-12 col-sm-12 col-md-12">{!! $listSlide[1]['value'][0]['content'] !!}.</p>
+                            <p class="animated fadeInUp col-12 col-sm-12 col-md-12">{!! $listSlide[1]->value->content !!}.</p>
                         </div>
                     </div>
                 </div>
@@ -173,20 +173,20 @@
                             </div>
                             <div class="khoitext animated fadeInLeft" index="1">
                                 <div>
-                                    <h3>Simple money tracker</h3>
-                                    <p>It takes seconds to record daily transactions. Put them into clear and visualized categories such as Expense: Food, Shopping or Income: Salary, Gift.</p>
+                                    <h3>{{$listSlide[2]->value->describe_1}}</h3>
+                                    <p>{{$listSlide[2]->value->content_1}}.</p>
                                 </div>
                             </div>
                             <div class="khoitext animated fadeInLeft" index="2">
                                 <div>
-                                    <h3>Painless Budgeting</h3>
-                                    <p>Set budgets that are easy to stick to, based on your own spending habits. You’re one step closer to that stuff you want to buy.</p>
+                                    <h3>{{$listSlide[2]->value->describe_2}}</h3>
+                                    <p>{{$listSlide[2]->value->content_2}}.</p>
                                 </div>
                             </div>
                             <div class="khoitext animated fadeInLeft" index="3">
                                 <div>
-                                    <h3>The whole picture in one place</h3>
-                                    <p>One report to give a clear view on your spending patterns. Understand where your money comes and goes with easy-to-read graphs.</p>
+                                    <h3>{{$listSlide[2]->value->describe_3}}</h3>
+                                    <p>{{$listSlide[2]->value->content_3}}.</p>
                                 </div>
                             </div>
                         </div>
@@ -194,18 +194,17 @@
                     <div class="col-lg-6 d-none d-lg-block">
                         <div class="containDeviceImage">
                             <div class="preview1 animated fadeInRight">
-                                <img src="images/cash-book.png" alt="">
+                                <img src="{{ asset(config('app.img_path')) }}/{{$listSlide[2]->value->file}}" alt="">
                             </div>
                             <div class="preview2 animated fadeInRight d-none">
-                                <img src="images/budget_1.png" alt="">
-                                <img src="images/budget_2.png" class="animated flipInX" alt="">
-                                <img src="images/budget_3.png" class="animated flipInX" alt="">
+                                <img src="{{ asset(config('app.img_path')) }}/{{$listSlide[2]->value->file_1[2]->img}}" alt="">
+                                <img src="{{ asset(config('app.img_path')) }}/{{$listSlide[2]->value->file_1[1]->img}}" class="animated flipInX" alt="">
+                                <img src="{{ asset(config('app.img_path')) }}/{{$listSlide[2]->value->file_1[0]->img}}" class="animated flipInX" alt="">
                             </div>
+
                             <div class="preview3 animated fadeInRight d-none">
-                                <img src="images/in_depth_1.png" alt="">
-                                <img src="images/in_depth_1.gif" alt="">
-                                <img src="images/in_depth_2.png" alt="">
-                                <img src="images/in_depth_2.gif" alt="">
+                                <img src="{{ asset(config('app.img_path')) }}/{{$listSlide[2]->value->file_2[0]->img}}" alt="">
+                                <img src="{{ asset(config('app.img_path')) }}/{{$listSlide[2]->value->file_2[1]->img}}" alt="">
                             </div>
                             
                         </div>
