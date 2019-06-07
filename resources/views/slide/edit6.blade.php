@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('style')
-    <link href="bower_components/moneylover-bower/fontawesome-iconpicker/fontawesome-iconpicker.min.css" rel="stylesheet" type="text/css" />
+
 @endsection
 
 @section('content')
@@ -40,10 +40,10 @@
                     <div class="m-portlet__head-tools">
                         <ul class="m-portlet__nav">
                             <li class="m-portlet__nav-item">
-                                <button class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air addNewButton">
+                                <button class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air addNewBlog">
                                     <span>
                                         <i class="la la-plus"></i>
-                                        <span>Add New Button</span>
+                                        <span>Add New Blog</span>
                                     </span>
                                 </button>
                             </li>
@@ -63,74 +63,65 @@
                                     <input type="text" name="key" class="form-control m-input" placeholder="Enter key" value="{{ $slide->key }}">
                                 </div>
                             </div>
-                            <div class="form-group m-form__group">
-                                <label>Text Logo:</label>
-                                <input type="file" name="text_logo" class="form-control m-input">
-                            </div>
-                            <div class="m-form__section m-form__section--first">
-                                <div class="form-group m-form__group">
-                                    <label for="example_input_full_name">Intro Text:</label>
-                                    <input type="text" name="intro" class="form-control m-input" placeholder="Enter intro"
-                                    @isset($slide->value->intro) 
-                                        value="{{ $slide->value->intro }}"
-                                    @endisset
+                            <div class="row">
+                                <div class="col-6">
+                                    <label>Link 1</label>
+                                    <input type="text" name="link_tren" class="form-control m-input" placeholder="Enter link"
+                                        @isset($slide->value->link_tren)
+                                            value="{{ $slide->value->link_tren }}" 
+                                        @endisset
                                     >
                                 </div>
+                                <div class="col-6">
+                                    <div class="form-group m-form__group">
+                                        <label>Image 1</label>
+                                        <input type="file" name="image['tren']" class="form-control m-input">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <label>Link 2</label>
+                                    <input type="text" name="link_duoi" class="form-control m-input" placeholder="Enter link"
+                                        @isset($slide->value->link_duoi)
+                                            value="{{ $slide->value->link_duoi }}" 
+                                        @endisset
+                                    >
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group m-form__group">
+                                        <label>Image 2</label>
+                                        <input type="file" name="image['duoi']" class="form-control m-input">
+                                    </div>
+                                </div>
+                                
                             </div>
-                            <div class="form-group m-form__group">
-                                <label>Intro Image 1</label>
-                                <input type="file" name="image[]" class="form-control m-input" value="bjgghjghj">
-                            </div>
-                            <div class="form-group m-form__group">
-                                <label>Intro Image 2</label>
-                                <input type="file" name="image[]" class="form-control m-input">
-                            </div>
-                            <div class="form-group m-form__group">
-                                <label>Intro Image 3</label>
-                                <input type="file" name="image[]" class="form-control m-input">
-                            </div>
-                            @isset($slide->value->buttons)
-                            @foreach($slide->value->buttons as $key => $button)
+                            @isset($slide->value->blog)
+                            @foreach($slide->value->blog as $key => $blog)
                             <div class="m-form__section m-form__section--first">
                                 <div class="form-group m-form__group">
-                                    <label for="example_input_full_name">Button {{$key + 1}}</label>
+                                    <label for="example_input_full_name">Blog {{$key + 1}}</label>
                                     <div class="row">
-                                        <div class="col-3">
-                                            <label>Text</label>
-                                            <input type="text" name="buttons[{{$key}}][text]" class="form-control m-input" placeholder="Enter intro" 
-                                            @isset($button->text)    
-                                                value="{{ $button->text }}"
+                                        <div class="col-4">
+                                            <label>Title</label>
+                                            <input type="text" name="blog[{{$key}}][title]" class="form-control m-input" placeholder="Enter Title" 
+                                            @isset($blog->title)
+                                                value="{{ $blog->title }}"
                                             @endisset
                                             >
                                         </div>
-                                        <div class="col-3">
-                                            <label>Color</label>
-                                            <input type="color" name="buttons[{{$key}}][color]" class="form-control m-input" placeholder="Enter intro" 
-                                            @isset($button->color) 
-                                                value="{{ $button->color }}"
-                                            @endisset
-                                            >
-                                        </div>
-                                        <div class="col-3">
+                                        <div class="col-4">
                                             <label>Link</label>
-                                            <input type="text" name="buttons[{{$key}}][link]" class="form-control m-input" placeholder="Enter intro" 
-                                            @isset($button->link) 
-                                                value="{{ $button->text }}"
+                                            <input type="text" name="blog[{{$key}}][link]" class="form-control m-input" placeholder="Enter Link" 
+                                            @isset($blog->link) 
+                                                value="{{ $blog->link }}"
                                             @endisset
                                             >
                                         </div>
-                                        <div class="col-3">
-                                            <div class="btn-group">
-                                                <button data-selected="graduation-cap" type="button" class="icp iconpicker btn btn-default dropdown-toggle iconpicker-component float-right" data-toggle="dropdown">Icon
-                                                    <i class="fa fa-fw"></i>
-                                                    <span class="caret"></span>
-                                                </button>
-                                                <div class="dropdown-menu"></div>
-                                            </div>
-                                            <input type="text" name="buttons[{{$key}}][icon]" class="form-control m-input" placeholder="Select icon" 
-                                            @if(isset($button->icon))
-                                                value="{{ $button->icon }}"
-                                            @endif
+                                        <div class="col-4">
+                                            <label>Content</label>
+                                            <input type="text" name="blog[{{$key}}][content]" class="form-control m-input" placeholder="Enter Content" 
+                                            @isset($blog->content) 
+                                                value="{{ $blog->content }}"
+                                            @endisset
                                             >
                                         </div>
                                     </div>
@@ -158,73 +149,36 @@
 @endsection
 
 @section('script')
-    <script src="bower_components/moneylover-bower/fontawesome-iconpicker/fontawesome-iconpicker.js" type="text/javascript"></script>
-
     <script>
-        $(".iconpicker").iconpicker({
-            placement: 'bottomLeft',
-            animation: true,
-            hideOnSelect: true,
-            inputSearch: true,
-        });
-
-
-        $('.iconpicker').on('iconpickerSelected', function(event){
-            $icon = $(this).find("i").attr('class');
-            $iconInput = $(this).parent().next("input");
-            $iconInput.val($icon);
-        });
-
-        @if (isset($slide->value->buttons))
-            $count = {{ count($slide->value->buttons) }};
+        @if (isset($slide->value->blog))
+            $count = {{ count($slide->value->blog) }};
         @else
             $count = 0;
         @endif
 
-        $('.addNewButton').click(function () {
-            $stringButton = `<div class="m-form__section m-form__section--first">
+        $('.addNewBlog').click(function () {
+            $stringBlog = `<div class="m-form__section m-form__section--first">
                                 <div class="form-group m-form__group">
-                                    <label for="example_input_full_name">Button ` + ($count + 1) + `</label>
+                                    <label for="example_input_full_name">Blog ` + ($count + 1) + `</label>
                                     <div class="row">
-                                        <div class="col-3">
-                                            <label>Text</label>
-                                            <input type="text" name="buttons[` + $count + `][text]" class="form-control m-input" placeholder="Enter text">
+                                        <div class="col-4">
+                                            <label>Title</label>
+                                            <input type="text" name="blog[` + $count + `][title]" class="form-control m-input" placeholder="Enter title">
                                         </div>
-                                        <div class="col-3">
-                                            <label>Color</label>
-                                            <input type="color" name="buttons[` + $count + `][color]" class="form-control m-input" placeholder="Enter color">
-                                        </div>
-                                        <div class="col-3">
+                                        <div class="col-4">
                                             <label>Link</label>
-                                            <input type="text" name="buttons[` + $count + `][link]" class="form-control m-input" placeholder="Enter link">
+                                            <input type="text" name="blog[` + $count + `][link]" class="form-control m-input" placeholder="Enter link">
                                         </div>
-                                        <div class="col-3">
-                                            <div class="btn-group">
-                                                <button data-selected="graduation-cap" type="button" class="icp iconpicker btn btn-default dropdown-toggle iconpicker-component float-right" data-toggle="dropdown">Icon
-                                                    <i class="fa fa-fw"></i>
-                                                    <span class="caret"></span>
-                                                </button>
-                                                <div class="dropdown-menu"></div>
-                                            </div>
-                                            <input type="text" name="buttons[` + $count + `][icon]" class="form-control m-input" placeholder="Select icon">
+                                        <div class="col-4">
+                                            <label>Content</label>
+                                            <input type="text" name="blog[` + $count + `][content]" class="form-control m-input" placeholder="Enter content">
                                         </div>
                                     </div>
                                 </div>
                             </div>`;
-            $renderButton = $.parseHTML($stringButton);
+            $renderButton = $.parseHTML($stringBlog);
             $('.khoi').append($renderButton);
             $count++;
-            $(".iconpicker").iconpicker({
-                placement: 'bottomLeft',
-                animation: true,
-                hideOnSelect: true,
-                inputSearch: true,
-            });
-            $('.iconpicker').on('iconpickerSelected', function(event){
-                $icon = $(this).find("i").attr('class');
-                $iconInput = $(this).parent().next("input");
-                $iconInput.val($icon);
-            });
         })
     </script>
 @endsection
