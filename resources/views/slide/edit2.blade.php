@@ -53,7 +53,7 @@
                         <div class="m-form__section m-form__section--first">
                             <div class="form-group m-form__group">
                                 <label for="example_input_full_name">Describe</label>
-                                <input type="text" name="describe" class="form-control m-input" placeholder="Enter Describe" @isset($slide->value->describe) value="{{ $slide->value->describe }}">
+                                <input type="text" name="describe" class="form-control m-input" placeholder="Enter Describe" @isset($slide->value->describe) value="{{ $slide->value->describe }}" @endisset>
                             </div>
                         </div>
                         <div class="m-form__section m-form__section--first">
@@ -91,4 +91,3 @@
 <script src="{{ asset('bower_components/moneylover-bower/ckeditor/ckeditor.js') }}"></script>
 <script> CKEDITOR.replace('summary-ckeditor'); </script>
 @endsection
-

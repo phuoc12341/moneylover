@@ -224,6 +224,8 @@
                             <div class="preview3 animated fadeInRight d-none">
                                 <img src="{{ asset(config('app.img_path')) }}/{{$listSlide[2]->value->file_2[0]->img}}" alt="">
                                 <img src="{{ asset(config('app.img_path')) }}/{{$listSlide[2]->value->file_2[1]->img}}" alt="">
+                                <img src="{{ asset(config('app.img_path')) }}/{{$listSlide[2]->value->file_2[2]->img}}" alt="">
+                                <img src="{{ asset(config('app.img_path')) }}/{{$listSlide[2]->value->file_2[3]->img}}" alt="">
                             </div>
                             
                         </div>
@@ -236,37 +238,15 @@
                 <div class="khoitext " index="1">
                     <h3 class="col col-sm col-md d-lg-none text-center feature">Features</h3>
                 </div>
+
                 <div class="row text-center">
-                    <div class="col-lg-4 col-sm-6 col-6 mb-5 animated fadeIn">
-                        <img src="images/feature1.png" alt="">
+                    @foreach($listSlide[3]->value->slide as $key => $value)    
+                    <div class="col-lg-4 col-sm-6 col-6 animated fadeIn">
+                        <img src="{{ asset(config('app.img_path')) }}/{{$listSlide[3]->value->slide[$key]->image}}" alt="">
                         <h3>Multiple devices</h3>
                         <p>Safely synchronize across devices with Bank standard security.</p>
                     </div>
-                    <div class="col-lg-4 col-sm-6 col-6 mb-5 dangcohieuung animated fadeIn">
-                        <img src="images/feature2.png" alt="">
-                        <h3>Recurring transaction</h3>
-                        <p>Get notified of recurring bills and transactions before due date.</p>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 col-6 mb-5 dangcohieuung animated fadeIn">
-                        <img src="images/feature3.png" alt="">
-                        <h3>Travel mode</h3>
-                        <p>All currencies supported with up-to-date exchange rate.</p>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 col-6 animated fadeIn">
-                        <img src="images/feature4.png" alt="">
-                        <h3>Saving plan</h3>
-                        <p>Keep track on savings process to meet your financial goals.</p>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 col-6 animated fadeIn">
-                        <img src="images/feature5.png" alt="">
-                        <h3>Debt and Loan</h3>
-                        <p>Manage your debts, loans and payment process in one place.</p>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 col-6 animated fadeIn">
-                        <img src="images/feature6.png" alt="">
-                        <h3>Scan receipt</h3>
-                        <p>Take pictures of your receipts to auto-process and organize them.</p>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
