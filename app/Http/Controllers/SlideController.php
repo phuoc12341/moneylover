@@ -84,30 +84,30 @@ class SlideController extends Controller
 
         switch ($id) {
             case 1:
-            $slide->value = json_decode($slide->value);
-            $arrImageOriginal = [];
-            $textLogoImageOriginal = '';
-
-            if (isset($slide->value->image)) {
-                $arrImageOriginal = $slide->value->image;
-            }
-
-            if (isset($slide->value->text_logo)) {
-                $textLogoImageOriginal = $slide->value->text_logo;
-            }
-
-            $allRequestParameter = $request->all();
-            $allRequestParameter = Arr::except($allRequestParameter, ['_method', '_token', '_key', 'order']);
-            $allRequestParameter['image'] = $arrImageOriginal;
-            $allRequestParameter['text_logo'] = $textLogoImageOriginal;
-            if ($request->hasFile('image')) {
-                foreach ($request->file('image') as $key => $image) {
-                    if ($image->isValid()) {
-                        $path = $image->store(config('custom.file_storage.upload_path'));
-                        $path = str_replace('public/', '', $path);
-                        if (isset($arrImageOriginal[$key])) {
-                            Storage::delete('public/' . $arrImageOriginal[$key]);
-                        }
+                $slide->value = json_decode($slide->value);
+                $arrImageOriginal = [];
+                $textLogoImageOriginal = '';
+        
+                if (isset($slide->value->image)) {
+                    $arrImageOriginal = $slide->value->image;
+                }
+        
+                if (isset($slide->value->text_logo)) {
+                    $textLogoImageOriginal = $slide->value->text_logo;
+                }
+        
+                $allRequestParameter = $request->all();
+                $allRequestParameter = Arr::except($allRequestParameter, ['_method', '_token', '_key', 'order']);
+                $allRequestParameter['image'] = $arrImageOriginal;
+                $allRequestParameter['text_logo'] = $textLogoImageOriginal;
+                if ($request->hasFile('image')) {
+                    foreach ($request->file('image') as $key => $image) {
+                        if ($image->isValid()) {
+                            $path = $image->store(config('custom.file_storage.upload_path'));
+                            $path = str_replace('public/', '', $path);
+                            if (isset($arrImageOriginal[$key])) {
+                                Storage::delete('public/' . $arrImageOriginal[$key]);
+                            }
 
                         $allRequestParameter['image'][$key] = $path;
 
@@ -212,6 +212,42 @@ class SlideController extends Controller
             case 4:
                 dd($request->all());
             break;
+
+                break;
+
+            case 5:
+                $slide->value = json_decode($slide->value);
+                $allRequestParameter = $request->all();
+                $allRequestParameter = Arr::except($allRequestParameter, ['_method', '_token', '_key', 'order']);
+
+                foreach ($slide->value as $key => $carousel) {
+                    if (isset($carousel->image)) {
+                        $allImageRequest['carousel'][$key]['image'] = $carousel->image;
+                    }
+                }
+
+                $allImageRequest = $request->allFiles();
+
+                if (!empty($allImageRequest)) {
+                    foreach ($allImageRequest['carousel'] as $key => $carousel) {
+                        if ($carousel['image']->isValid()) {
+                            $path = $carousel['image']->store(config('custom.file_storage.upload_path'));
+                            $path = str_replace('public/', '', $path);
+
+                            if (isset($slide->value->carousel[$key]->image)) {
+                                Storage::delete('public/' . $slide->value->carousel[$key]->image);
+                            }
+
+                            $allRequestParameter['carousel'][$key]['image'] = $path;
+                        }
+                    }
+                }
+
+                break;
+
+            case 6:
+
+                break;
 
             default:
 
