@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-use Illuminate\Support\Arr;
+use Illuminate\Support\Arr; 
 
 class UpdateSlideRequest extends FormRequest
 {
@@ -15,7 +15,7 @@ class UpdateSlideRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -28,24 +28,47 @@ class UpdateSlideRequest extends FormRequest
         $idSlide = Arr::get($this->route()->parameters(), 'slide');
 
         switch ($idSlide) {
-            case 1:
-                return [
-                    'url' => 'bail|required|url|unique:socials,url|max:255',
-                    'icon' => 'bail|required|unique:socials,icon|max:255',
-                ];
-
-                break;
-            
             case 2:
-                return [
-                    //
-                ];
+            return [
+                'describe' => 'required|min:5|max:256',
+                'content' => 'required|min:10|max:512',
+                'url_youtube' => 'required|url',
+            ];
+            break;
 
-                break;
-
+            case 3:
+            return [
+                'describe_1' => 'required|min:5|max:256',
+                'content_1' => 'required|min:10|max:512',
+                'file' => 'image|max:2048',
+                'describe_2' => 'required|min:5|max:256',
+                'content_2' => 'required|min:10|max:512',
+                'file_1.*' => 'image|max:2048',
+                'describe_3' => 'required|min:5|max:256',
+                'content_3' => 'required|min:10|max:512',
+                'file_2.*' => 'image|max:2048',
+            ];
+            break;
+            case 3:
+            return [
+                'describe' => 'required|min:5|max:256',
+                'content' => 'required|min:10|max:512',
+                'image' => '|image|max:2048',
+            ];
+            
             default:
                 # code...
-                break;
+            break;
         }
+
+    }
+
+    public function messages()
+    {
+        return [
+            'describe.required' => 'khong the de trong mô tả ',
+            'name.min' => trans('validate.name_length'),
+            'name.max' => trans('validate.name_length'),
+        ];
     }
 }
