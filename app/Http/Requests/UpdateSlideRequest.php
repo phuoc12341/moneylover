@@ -28,13 +28,23 @@ class UpdateSlideRequest extends FormRequest
         $idSlide = Arr::get($this->route()->parameters(), 'slide');
 
         switch ($idSlide) {
+            case 1:
+            return [
+                'text_logo' => 'max:256',
+                'intro' => 'required|max:512',
+                'image.*' => 'image',
+                'button.*.text' => 'required|max:512',
+                'button.*.color' => 'required|max:512',
+                'button.*.link' => 'required|url',
+                'button.*.icon' => 'required|max:512',
+            ];
+
             case 2:
             return [
                 'describe' => 'required|min:5|max:256',
                 'content' => 'required|min:10|max:512',
                 'url_youtube' => 'required|url',
             ];
-            break;
 
             case 3:
             return [
@@ -48,17 +58,41 @@ class UpdateSlideRequest extends FormRequest
                 'content_3' => 'required|min:10|max:512',
                 'file_2.*' => 'image|max:2048',
             ];
-            break;
-            case 3:
+
+            case 4:
             return [
                 'describe' => 'required|min:5|max:256',
                 'content' => 'required|min:10|max:512',
                 'image' => '|image|max:2048',
             ];
+
+            case 5:
+                return [
+                    'carousel.*.name' => 'required|min:5|max:256',
+                    'carousel.*.quote' => 'required|min:10|max:512',
+                    'carousel.*.image' => 'image|max:2048',
+                ];
+
+            case 6:
+                return [
+                    'link_tren' => 'required|url',
+                    'link_duoi' => 'required|url',
+                    'blog.*.title' => 'required|max:256',
+                    'blog.*.link' => 'required|url',
+                    'blog.*.content' => 'required|max:2048',
+                ];
+
+            case 7:
+                return [
+                    'title' => 'required|max:256',
+                    'phone.*.link' => 'required|url',
+                    'phone.*.image' => 'image',
+                ];
             
             default:
-                # code...
-            break;
+                return [
+                    //
+                ];
         }
 
     }

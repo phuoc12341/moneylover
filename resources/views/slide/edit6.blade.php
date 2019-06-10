@@ -75,7 +75,7 @@
                                 <div class="col-6">
                                     <div class="form-group m-form__group">
                                         <label>Image 1</label>
-                                        <input type="file" name="image['tren']" class="form-control m-input">
+                                        <input type="file" name="image[tren]" class="form-control m-input">
                                     </div>
                                 </div>
                                 <div class="col-6">
@@ -89,7 +89,7 @@
                                 <div class="col-6">
                                     <div class="form-group m-form__group">
                                         <label>Image 2</label>
-                                        <input type="file" name="image['duoi']" class="form-control m-input">
+                                        <input type="file" name="image[duoi]" class="form-control m-input">
                                     </div>
                                 </div>
                                 

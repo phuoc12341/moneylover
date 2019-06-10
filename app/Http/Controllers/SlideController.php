@@ -210,7 +210,7 @@ class SlideController extends Controller
             case 5:
             $slide->value = json_decode($slide->value);
             $allRequestParameter = $request->all();
-            $allRequestParameter = Arr::except($allRequestParameter, ['_method', '_token', '_key', 'order']);
+            $allRequestParameter = Arr::except($allRequestParameter, ['_method', '_token', '_key', 'order','key']);
             if (isset($slide->value->carousel)) {
                 foreach ($slide->value->carousel as $key => $carousel) {
                     if (isset($carousel->image)) {
@@ -241,7 +241,7 @@ class SlideController extends Controller
             case 6:
             $slide->value = json_decode($slide->value);
             $allRequestParameter = $request->all();
-            $allRequestParameter = Arr::except($allRequestParameter, ['_method', '_token', '_key', 'order']);
+            $allRequestParameter = Arr::except($allRequestParameter, ['_method', '_token', '_key', 'order','key']);
 
             if (isset($slide->value->image)) {
                 foreach ($slide->value->image as $key => $image) {

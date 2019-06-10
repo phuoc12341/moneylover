@@ -77,15 +77,11 @@
                                     </div>
                                     <div class="m-form__section m-form__section--first">
                                         <div class="form-group m-form__group">
-                                            <label for="example_input_full_name">Quote {{ $key + 1 }}</label>
-                                            <input type="text" name="carousel[{{ $key }}][quote]" class="form-control m-input" placeholder="Enter quote"
-                                            @isset($carousel->quote) 
-                                                value="{{ $carousel->quote }}"
                                             <label for="example_input_full_name">Quote {{ $i + 1 }}</label>
                                             <input type="text" name="carousel[{{ $i }}][quote]" class="form-control m-input" placeholder="Enter quote"
-                                            @isset($slide->value->carousel[$i]->quote) 
-                                                value="{{ $slide->value->carousel[$i]->quote }}"
-                                            @endisset
+                                                @isset($slide->value->carousel[$i]->quote) 
+                                                    value="{{ $slide->value->carousel[$i]->quote }}"
+                                                @endisset
                                             >
                                         </div>
                                     </div>
