@@ -103,7 +103,7 @@
 
     <div id="video">
         <div>
-            <iframe class="animated zoomIn" width="640" height="360" src="{{ $listSlide[1]->value->url_youtube }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe class="animated zoomIn" width="640" height="360" src="@if(isset($listSlide[1]->value->url_youtube)){{ $listSlide[1]->value->url_youtube }}@endif" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <button class="close">
             <span class="iconclosevideo"></span>
@@ -171,10 +171,10 @@
                     </div>
                     <div class="col-lg-5 offset-lg-1 col-md-10 offset-md-1 col-sm-12 col-12 text">
                         <div>
-                            <h3 class="animated fadeInUp center">{{ $listSlide[1]->value->describe }}</h3>
-                            <iframe width="100%" src="{{ $listSlide[1]->value->url_youtube }}" frameborder="0" class="d-block d-lg-none boder" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen"></iframe>
+                            <h3 class="animated fadeInUp center">@if(isset($listSlide[1]->value->url_youtube)){{ $listSlide[1]->value->describe }}@endif</h3>
+                            <iframe width="100%" src="@if(isset($listSlide[1]->value->url_youtube)){{ $listSlide[1]->value->url_youtube }}@endif" frameborder="0" class="d-block d-lg-none boder" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen"></iframe>
 
-                            <p class="animated fadeInUp col-12 col-sm-12 col-md-12">{!! $listSlide[1]->value->content !!}.</p>
+                            <p class="animated fadeInUp col-12 col-sm-12 col-md-12">@if(isset($listSlide[1]->value->content)){!! $listSlide[1]->value->content !!}.@endif</p>
                         </div>
                     </div>
                 </div>
@@ -192,20 +192,20 @@
                             </div>
                             <div class="khoitext animated fadeInLeft" index="1">
                                 <div>
-                                    <h3>{{$listSlide[2]->value->describe_1}}</h3>
-                                    <p>{{$listSlide[2]->value->content_1}}.</p>
+                                    <h3>@if(isset($listSlide[2]->value->describe_1)){{$listSlide[2]->value->describe_1}}@endif</h3>
+                                    <p>@if(isset($listSlide[2]->value->content_1)){{$listSlide[2]->value->content_1}}.@endif</p>
                                 </div>
                             </div>
                             <div class="khoitext animated fadeInLeft" index="2">
                                 <div>
-                                    <h3>{{$listSlide[2]->value->describe_2}}</h3>
-                                    <p>{{$listSlide[2]->value->content_2}}.</p>
+                                    <h3>@if(isset($listSlide[2]->value->describe_2)){{$listSlide[2]->value->describe_2}}@endif</h3>
+                                    <p>@if(isset($listSlide[2]->value->content_2)){{$listSlide[2]->value->content_2}}.@endif</p>
                                 </div>
                             </div>
                             <div class="khoitext animated fadeInLeft" index="3">
                                 <div>
-                                    <h3>{{$listSlide[2]->value->describe_3}}</h3>
-                                    <p>{{$listSlide[2]->value->content_3}}.</p>
+                                    <h3>@if(isset($listSlide[2]->value->describe_3)){{$listSlide[2]->value->describe_3}}@endif</h3>
+                                    <p>@if(isset($listSlide[2]->value->content_3)){{$listSlide[2]->value->content_3}}.@endif</p>
                                 </div>
                             </div>
                         </div>
