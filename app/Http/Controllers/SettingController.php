@@ -16,7 +16,11 @@ class SettingController extends Controller
      */
     public function index()
     {
-        //
+        $listSetting = Setting::all();
+        $compact = [
+            'listSetting' => $listSetting
+        ];
+        return view('setting.index', $compact);
     }
 
     /**
@@ -26,17 +30,8 @@ class SettingController extends Controller
      */
     public function create()
     {
-        $setting = Setting::find(1);
 
-        if (is_null($setting)) {
-            return view('setting.update_or_create');
-        }
-
-        $compact = [
-            'setting' => $setting,
-        ];
-
-        return view('setting.update_or_create', $compact);
+        return view('setting.update_or_create');
     }
 
     /**
@@ -47,30 +42,48 @@ class SettingController extends Controller
      */
     public function store(Request $request)
     {
-        $setting = Setting::find(1);
-        if (is_null($setting)) {
-            $setting = new Setting;
-        }
+        // dd('hdg');
+        // $setting = Setting::find(1);
+        // if (is_null($setting)) {
+        $setting = new Setting;
+        // }
 
         $setting->site_name = $request->site_name;
         $setting->email = $request->email;
         $setting->phone = $request->phone;
         $setting->address = $request->address;
 
-        if ($request->hasFile('logo')) {
-            if ($request->file('logo')->isValid()) {
-                if ($setting->logo != '' && $setting->logo != null) {
-                    Storage::delete($setting->logo);
-                }
+        if ($request->hasFile('first_logo')) {
+            if ($request->file('first_logo')->isValid()) {
+                $image = $request->file('first_logo');
+                $path = $image->store(config('custom.file_storage.upload_path'));
+                $path = str_replace('public/', '', $path);
+                // dd($path);
+                // if ($setting->first_logo != '' && $setting->first_logo != null) {
+                    // Storage::delete($setting->first_logo);
 
-                $path = $request->logo->store(config('custom.file_storage.upload_path'));
-                $setting->logo = $path;      
+                // $path = $request->first_logo->store(config('custom.file_storage.upload_path'));
+                $setting->first_logo = $path;      
+            }
+        };
+
+
+        if ($request->hasFile('not_first_logo')) {
+            if ($request->file('not_first_logo')->isValid()) {
+                $image_logo2 = $request->file('not_first_logo');
+                // if ($setting->logo != '' && $setting->logo != null) {
+                    // Storage::delete($setting->not_first_logo);
+                // }
+
+                $path = $image_logo2->store(config('custom.file_storage.upload_path'));
+                $path = str_replace('public/', '', $path);
+                $setting->not_first_logo = $path;      
             }
         };
         
         $setting->save();
 
-        return redirect(route('setting.create'));
+        return redirect(route('setting.index'));
     }
 
     /**
@@ -92,7 +105,10 @@ class SettingController extends Controller
      */
     public function edit($id)
     {
-        //
+        $setting = Setting::findOrFail($id);
+        // dd($setting);
+        return view('setting.update_or_create', compact('setting'));
+        // dd($setting);
     }
 
     /**
@@ -104,7 +120,42 @@ class SettingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $setting = Setting::findOrFail($id);
+
+        $setting->site_name = $request->site_name;
+        $setting->email = $request->email;
+        $setting->phone = $request->phone;
+        $setting->address = $request->address;
+        if ($request->hasFile('first_logo')) {
+            if ($request->file('first_logo')->isValid()) {
+                $image_logo = $request->file('first_logo');
+                if ($setting->first_logo != '' && $setting->first_logo != null) {
+                    Storage::delete($setting->first_logo);
+                }
+
+                $path = $image_logo->store(config('custom.file_storage.upload_path'));
+                $path = str_replace('public/', '', $path);
+                $setting->first_logo = $path;      
+            }
+        };
+
+        if ($request->hasFile('not_first_logo')) {
+            if ($request->file('not_first_logo')->isValid()) {
+                $image_logo2 = $request->file('not_first_logo');
+                if ($setting->not_first_logo != '' && $setting->not_first_logo != null) {
+                    Storage::delete($setting->not_first_logo);
+                }
+
+                $path = $image_logo2->store(config('custom.file_storage.upload_path'));
+                $path = str_replace('public/', '', $path);
+                $setting->not_first_logo = $path;      
+            }
+        };
+        $setting->save();
+
+
+
+        return redirect()->route('setting.index')->with('success', 'sửa setting thành công');
     }
 
     /**
@@ -115,6 +166,9 @@ class SettingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $setting = Setting::find($id);
+        $setting->delete();
+
+        return redirect()->back()->with('success', __('messages.success_delete_setting'));
     }
 }

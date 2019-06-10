@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Models\Menu;
 use App\Models\Slide;
+use App\Models\Social;
+use App\Models\Setting;
 
 class IndexController extends Controller
 {
@@ -15,6 +17,8 @@ class IndexController extends Controller
         foreach ($listSlide as $slide) {
             $slide->value = json_decode($slide->value);
         }
+        $listSocial = Social::all();
+        $listSetting = Setting::all()->first();
 
     	$footerMenu = Menu::where('type', config('custom.menu.footer_menu'))->get();
     	$headerMenu = Menu::where('type', config('custom.menu.header_menu'))->get();
@@ -23,6 +27,8 @@ class IndexController extends Controller
             'listSlide' => $listSlide,
     		'footerMenu' => $footerMenu,
     		'headerMenu' => $headerMenu,
+            'listSocial' => $listSocial,
+            'listSetting' => $listSetting,
     	];
 
     	return view('index', $compact);
