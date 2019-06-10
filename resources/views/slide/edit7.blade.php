@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('style')
-    <link href="bower_components/moneylover-bower/fontawesome-iconpicker/fontawesome-iconpicker.min.css" rel="stylesheet" type="text/css" />
+
 @endsection
 
 @section('content')
@@ -32,7 +32,7 @@
                                 <i class="la la-gear"></i>
                             </span>
                             <h3 class="m-portlet__head-text">
-                                Form Update Slide 5
+                                Form Update Slide 7
                             </h3>
                         </div>
                     </div>
@@ -40,10 +40,10 @@
                     <div class="m-portlet__head-tools">
                         <ul class="m-portlet__nav">
                             <li class="m-portlet__nav-item">
-                                <button class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air addNewButton">
+                                <button class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air addNewBlog">
                                     <span>
                                         <i class="la la-plus"></i>
-                                        <span>Add New Button</span>
+                                        <span>Add New Blog</span>
                                     </span>
                                 </button>
                             </li>
@@ -51,6 +51,7 @@
                     </div>
                 </div>
 
+                <!--begin::Form-->
                 <form class="m-form" action="{{ route('slide.update', ['id' => $slide->id]) }}" method="POST" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
@@ -62,40 +63,33 @@
                                     <input type="text" name="key" class="form-control m-input" placeholder="Enter key" value="{{ $slide->key }}">
                                 </div>
                             </div>
+                            <div class="form-group m-form__group">
+                                <label>Title</label>
+                                <input type="text" name="title" class="form-control m-input" placeholder="Enter Title"
+                                @isset($slide->value->title)
+                                    value="{{ $slide->value->title }}" 
+                                @endisset
+                                >
+                            </div>
+                            @for($i = 0; $i < 3; $i++)
+                            <label class="mt-4" for="example_input_full_name">Phone {{ $i + 1 }}</label>
                             <div class="row">
-                                @for($i = 0; $i < 3; $i++ )
-                                <div class="col-4">
-                                    <div class="m-form__section m-form__section--first">
-                                        <div class="form-group m-form__group">
-                                            <label for="example_input_full_name">Personal Name {{ $i + 1 }}</label>
-                                            <input type="text" name="carousel[{{ $i }}][name]" class="form-control m-input" placeholder="Enter name" 
-                                            @isset($slide->value->carousel[$i]->name) 
-                                                value="{{ $slide->value->carousel[$i]->name }}"
-                                            @endisset
-                                            >
-                                        </div>
-                                    </div>
-                                    <div class="m-form__section m-form__section--first">
-                                        <div class="form-group m-form__group">
-                                            <label for="example_input_full_name">Quote {{ $key + 1 }}</label>
-                                            <input type="text" name="carousel[{{ $key }}][quote]" class="form-control m-input" placeholder="Enter quote"
-                                            @isset($carousel->quote) 
-                                                value="{{ $carousel->quote }}"
-                                            <label for="example_input_full_name">Quote {{ $i + 1 }}</label>
-                                            <input type="text" name="carousel[{{ $i }}][quote]" class="form-control m-input" placeholder="Enter quote"
-                                            @isset($slide->value->carousel[$i]->quote) 
-                                                value="{{ $slide->value->carousel[$i]->quote }}"
-                                            @endisset
-                                            >
-                                        </div>
-                                    </div>
+                                <div class="col-6">
+                                    <label>Link</label>
+                                    <input type="text" name="phone[{{ $i }}][link]" class="form-control m-input" placeholder="Enter link"
+                                        @isset($slide->value->phone[$i]->link)
+                                            value="{{ $slide->value->phone[$i]->link }}" 
+                                        @endisset
+                                    >
+                                </div>
+                                <div class="col-6">
                                     <div class="form-group m-form__group">
-                                        <label>Icon Image {{ $i + 1 }}</label>
-                                        <input type="file" name="carousel[{{ $i }}][image]" class="form-control m-input" value="bjgghjghj">
+                                        <label>Image</label>
+                                        <input type="file" name="phone[{{ $i }}][image]" class="form-control m-input">
                                     </div>
                                 </div>
-                                @endfor
                             </div>
+                            @endfor
                         </div>
                     </div>
                     <div class="m-portlet__foot m-portlet__foot--fit">

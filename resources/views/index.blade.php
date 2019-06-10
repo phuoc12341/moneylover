@@ -109,7 +109,7 @@
             <span class="iconclosevideo"></span>
         </button>
     </div>
-
+{{-- {{dd($listSlide[0]->value)}} --}}
     <div id="fullpage">
         <div class="section" id="section_0">
             <div id="slide_1">
@@ -118,19 +118,38 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-5 col-sm-12 col-12 trai">
-                                    {{-- <img class="col-12 col-sm-12 col-md-12 animated fadeInUp" src="images/logo_text.svg"> --}}
-                                    <img class="col-12 col-sm-12 col-md-12 animated fadeInUp" src="{{ Storage::url($listSlide[0]->value->text_logo) }}">
-                                    <p class="animated fadeInUp">Simplest way to manage personal finances.<br>
-                                  Because money matters.</p>
+                                    <img class="col-12 col-sm-12 col-md-12 animated fadeInUp" 
+                                    @isset($listSlide[0]->value->text_logo)
+                                       src="{{ asset('storage/' . $listSlide[0]->value->text_logo) }}"
+                                    @endisset
+                                    >
+                                    <p class="animated fadeInUp">
+                                        @isset($listSlide[0]->value->intro)
+                                            {{ $listSlide[0]->value->intro }}
+                                        @endisset
+                                    </p>
+
                                     <div class="contain2button animated fadeInUp">
-                                        <a href="https://web.moneylover.me" target="_blank" class="btn btn-primary btn-lg mr-3 d-none d-lg-inline-block">Try on browser</a>
-                                        <button type="button" class="btn btn-primary green-background"><i class="fas fa-cloud-download-alt mr-2 "></i>Download for free</button>
+                                        @isset($listSlide[0]->value->buttons)
+                                        @foreach($listSlide[0]->value->buttons as $key => $button)
+                                            @if($key == 0)
+                                                <a target="_blank" class="btn btn-primary btn-lg mr-3 d-none d-lg-inline-block {{ $button->icon }}"
+                                                href="{{ $button->link }}"
+                                                >{{ $button->text }}</a>
+                                            @endif
+                                            @if($key != 0)
+                                            <button type="button" class="btn btn-primary green-background"><i class="fas fa-cloud-download-alt mr-2"></i>{{ $button->text }}</button>
+                                            @endif
+                                        @endforeach
+                                        @endisset
                                     </div>
                                 </div>
                                 <div class="col-lg-7 phai d-none d-lg-block">
-                                    <img class="animated fadeInRight" src="images/screenshot1.png">
-                                    <img class="animated fadeInRight" src="images/screenshot2.png">
-                                    <img class="animated fadeInRight" src="images/screenshot3.png">
+                                    @isset($listSlide[0]->value->image)
+                                        @foreach($listSlide[0]->value->image as $key => $image)
+                                            <img class="animated fadeInRight" src="{{ asset('storage/' . $image) }}">
+                                        @endforeach
+                                    @endisset
                                 </div>
                             </div>
                         </div>
