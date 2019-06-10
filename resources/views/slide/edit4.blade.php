@@ -37,10 +37,7 @@
                     </div>
                 </div>
             </div>
-<<<<<<< 9dcadb407ab8e04967abadc87eba388399d5d3f5
 
-=======
->>>>>>> edit slide 4
             <!--begin::Form-->
             <form class="m-form" action="{{ route('slide.update', ['id' => $slide->id]) }}" method="POST" enctype="multipart/form-data">
                 @method('PUT')

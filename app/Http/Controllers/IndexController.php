@@ -25,6 +25,6 @@ class IndexController extends Controller
     		'headerMenu' => $headerMenu,
     	];
 
-    	return view('index', compact('listSlide'));
+    	return view('index', $compact);
     }
 }

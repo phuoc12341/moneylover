@@ -50,8 +50,7 @@
                         </ul>
                     </div>
                 </div>
-{{-- {{ dd($slide) }} --}}
-{{-- {{ dd($slide->value[0]['buttons'][0][]) }} --}}
+
                 <!--begin::Form-->
                 <form class="m-form" action="{{ route('slide.update', ['id' => $slide->id]) }}" method="POST" enctype="multipart/form-data">
                     @method('PUT')
@@ -80,7 +79,7 @@
                             </div>
                             <div class="form-group m-form__group">
                                 <label>Intro Image 1</label>
-                                <input type="file" name="image[]" class="form-control m-input" value="bjgghjghj">
+                                <input type="file" name="image[]" class="form-control m-input">
                             </div>
                             <div class="form-group m-form__group">
                                 <label>Intro Image 2</label>

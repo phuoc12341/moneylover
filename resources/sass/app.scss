@@ -828,7 +828,7 @@
 }
 
 #section_4 .row .control-owl .owl-page:nth-child(1)::after {
-  content: "Independent UK";
+  content: attr(data-name);
   position: absolute;
   bottom: -50px;
   left: 50%;
@@ -843,7 +843,7 @@
 }
 
 #section_4 .row .control-owl .owl-page:nth-child(2)::after {
-  content: "Lorna Mifsud Cachia";
+  content: attr(data-name);
   position: absolute;
   bottom: -50px;
   left: 50%;
@@ -858,7 +858,7 @@
 }
 
 #section_4 .row .control-owl .owl-page:nth-child(3)::after {
-  content: "Jeveny Johnson";
+  content: attr(data-name);
   position: absolute;
   bottom: -50px;
   left: 50%;
@@ -1205,7 +1205,8 @@
 }
 
 #section_4 .row > div {
-  top: 30% !important;
+  margin: auto;
+  top: 25% !important;
 }
 
 #section_5 {
