@@ -52,7 +52,7 @@
                 </div>
 
                 <!--begin::Form-->
-                <form class="m-form" action="{{ route('slide.update', ['id' => $slide->id]) }}" method="POST" enctype="multipart/form-data">
+                <form class="m-form" action="{{ route('slide.update', ['id' => $slide->id]) }}" method="POST" enctype="multipart/form-data" readonly>
                     @method('PUT')
                     @csrf
                     <div class="m-portlet__body">

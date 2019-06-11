@@ -28,8 +28,8 @@ class SocialUpdateRequest extends FormRequest
         $idSocial = Arr::get($this->route()->parameters(), 'social');
 
         return [
-            'url' => 'required|url|unique:socials,url,' . $idSocial . ',id,deleted_at,NULL|max:255',
-            'icon' => 'required|unique:socials,icon,' . $idSocial . '|max:255',
+            'url' => 'required|url|unique:socials,url,' . $idSocial . ',id,deleted_at,NULL',
+            'icon' => 'required|unique:socials,icon,' . $idSocial . ',id,deleted_at,NULL|max:255',
         ];
     }
 
