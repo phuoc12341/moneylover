@@ -47,7 +47,7 @@
                         <div class="m-form__section m-form__section--first">
                             <div class="form-group m-form__group">
                                 <label for="example_input_full_name">Key</label>
-                                <input type="text" name="key" class="form-control m-input" readonly="true" value="{{ $slide->key }}">
+                                <input type="text" name="key" class="form-control m-input" readonly="true" value="{{ $slide->key }}" readonly>
                             </div>
                         </div>
                         <div class="row">

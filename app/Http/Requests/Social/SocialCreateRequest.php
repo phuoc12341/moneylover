@@ -24,8 +24,8 @@ class SocialCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'url' => 'bail|required|url|unique:socials,url|max:255',
-            'icon' => 'bail|required|unique:socials,icon|max:255',
+            'url' => 'bail|required|url|unique:socials,url,NULL,id,deleted_at,NULL',
+            'icon' => 'bail|required|unique:socials,icon,NULL,id,deleted_at,NULL|max:20',
         ];
     }
 
