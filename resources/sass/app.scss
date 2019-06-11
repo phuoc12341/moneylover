@@ -1177,7 +1177,6 @@
 @media (min-width: 768px) {
   .edit-pading {
     margin: 0px 0px 5px 0px !important;
-
   }
 }
 
@@ -1235,3 +1234,11 @@
 #section_5 .container .row .khoitrai.hihe::before {
   content: none;
 }
+
+@media (max-width: 576px) {
+
+  .firstHeader > img {
+    height: 30px;
+  }
+}
+

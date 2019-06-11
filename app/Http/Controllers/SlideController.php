@@ -188,11 +188,15 @@ class SlideController extends Controller
             $allRequestParameter = Arr::except($allRequestParameter, ['_method', '_token', '_key', 'order']);
             $slide->value = json_decode($slide->value);
             $image = [];
-            foreach ($slide->value->slide as $key => $value) {
-                if (isset($slide->value->slide[$key]->image)) {
-                    $allRequestParameter['slide'][$key]['image'] = $slide->value->slide[$key]->image;
+
+            if (isset($slide->value->slide)) {
+                foreach ($slide->value->slide as $key => $value) {
+                    if (isset($slide->value->slide[$key]->image)) {
+                        $allRequestParameter['slide'][$key]['image'] = $slide->value->slide[$key]->image;
+                    }
                 }
             }
+
             $allFileRequest = $request->allFiles();
             if (isset($allFileRequest['slide'])) {
                 foreach ($allFileRequest['slide']  as $key => $item) {

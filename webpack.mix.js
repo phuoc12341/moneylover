@@ -28,3 +28,4 @@ mix.webpackConfig({
         }),
     ],
 });
+mix.copyDirectory('resources/sass/style.css', 'public/css/style.css');

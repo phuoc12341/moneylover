@@ -61,9 +61,9 @@ class UpdateSlideRequest extends FormRequest
 
             case 4:
             return [
-                'describe' => 'required|min:5|max:256',
-                'content' => 'required|min:10|max:512',
-                'image' => '|image|max:2048',
+                'slide.*.describe' => 'required|max:256',
+                'slide.*.content' => 'required|max:512',
+                'slide.*.image' => '|image|max:2048',
             ];
 
             case 5:

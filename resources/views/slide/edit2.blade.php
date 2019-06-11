@@ -59,13 +59,13 @@
                         <div class="m-form__section m-form__section--first">
                             <div class="form-group m-form__group">
                                 <label for="example_input_full_name">Content</label>
-                                <textarea class="form-control" id="summary-ckeditor" name="content">{{ $slide->value->content }}</textarea>
+                                <textarea class="form-control" id="summary-ckeditor" name="content">@isset($slide->value->content){{ $slide->value->content }}@endisset</textarea>
                             </div>
                         </div>
                         <div class="m-form__section m-form__section--first">
                             <div class="form-group m-form__group">
                                 <label for="example_input_full_name">Link YouTube</label>
-                                <input type="text" name="url_youtube" class="form-control m-input" placeholder="Enter Link" value="{{ $slide->value->url_youtube }}">
+                                <input type="text" name="url_youtube" class="form-control m-input" placeholder="Enter Link" value="@isset($slide->value->url_youtube){{ $slide->value->url_youtube }}@endisset">
                             </div>
                         </div>
                     </div>
