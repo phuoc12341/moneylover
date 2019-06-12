@@ -101,8 +101,6 @@ class UpdateSlideRequest extends FormRequest
     {
         return [
             'describe.required' => 'khong the de trong mô tả ',
-            'name.min' => trans('validate.name_length'),
-            'name.max' => trans('validate.name_length'),
         ];
     }
 }
