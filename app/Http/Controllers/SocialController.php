@@ -7,9 +7,22 @@ use Illuminate\Http\Request;
 use App\Models\Social;
 use App\Http\Requests\Social\SocialCreateRequest;
 use App\Http\Requests\Social\SocialUpdateRequest;
+use App\Repo\SocialRepositoryInterface;
 
 class SocialController extends Controller
 {
+    protected $socialRepository;
+
+    /**     
+     * Create a new controller instance.
+     * @return void
+     **/
+    public function __construct(SocialRepositoryInterface $socialRepository)
+    {
+        $this->socialRepository = $socialRepository;
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +30,7 @@ class SocialController extends Controller
      */
     public function index()
     {
-        $listSocial = Social::all();
+        $listSocial = $this->socialRepository->getListSocial();
         $compact = [
             'listSocial' => $listSocial,
         ];
@@ -43,10 +56,7 @@ class SocialController extends Controller
      */
     public function store(SocialCreateRequest $request)
     {
-        $social = new Social;
-        $social->url = $request->url;
-        $social->icon = $request->icon;
-        $social->save();
+        $this->socialRepository->createNewSocial($request);
 
         return redirect()->route('social.index')->with('success', __('messages.success_create_social'));
     }
@@ -70,7 +80,7 @@ class SocialController extends Controller
      */
     public function edit($id)
     {
-        $social = Social::find($id);
+        $social = $this->socialRepository->showFormEditSocial($id);
 
         return view('socials.edit', ['social' => $social]);
     }
@@ -84,11 +94,7 @@ class SocialController extends Controller
      */
     public function update(SocialUpdateRequest $request, $id)
     {
-        $social = Social::find($id);
-
-        $social->url = $request->url;
-        $social->icon = $request->icon;
-        $social->save();
+        $social = $this->socialRepository->updateSocial($request, $id);
 
         return redirect()->back()->with('success', __('messages.success_update_social'));
     }
@@ -101,8 +107,7 @@ class SocialController extends Controller
      */
     public function destroy($id)
     {
-        $social = Social::find($id);
-        $social->delete();
+        $this->socialRepository->deleteSocial($id);
 
         return redirect()->back()->with('success', __('messages.success_delete_social'));
     }
