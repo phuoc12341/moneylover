@@ -8,6 +8,6 @@ use Faker\Generator as Faker;
 $factory->define(Social::class, function (Faker $faker) {
     return [
      	'url' => $faker->name,
-        'icon' => $faker->safeEmail,
+        'icon' => $faker->text($maxNbChars = 20),
     ];
 });
