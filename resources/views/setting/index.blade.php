@@ -71,8 +71,8 @@
                             <td>{{ $item->id }}</td>
                             <td><p class="name">{{ $item->site_name }}</p></td>
                             <td><p>{{ $item->email }}</p></td>
-                            <td><p></p>{{ $item->phone }}</td>
-                            <td><p></p>{{ $item->address }}</td>
+                            <td><p>{{ $item->phone }}</p></td>
+                            <td><p>{{ $item->address }}</p></td>
                             <td class="fix_img">
                                 <img src="storage/{{ $item->first_logo }}" alt="">
                             </td>

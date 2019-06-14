@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="bower_components/moneylover-bower/fullpage/fullpage.css"/>
     <link rel="stylesheet" type="text/css" href="css/app.css"/>
     <link rel="stylesheet" type="text/css" href="bower_components/moneylover-bower/animate.css"/>
-    <!--     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 </head>
 <body>
     <div id="app"></div>
@@ -31,11 +31,11 @@
                     <button class="btn languege-for-mobile d-block d-lg-none float-right" type="button" data-toggle="modal" data-target="#languageModal">English <span class="caret"></span>
                     </button>
                 </div>
-                <div class="col-sm-12 notFirstHeader d-none">
+                <div class="col-sm-12 notFirstHeader">
                     @isset($listSetting->not_first_logo)
-                    <img class="col-12 col-md-6" src="storage/{{$listSetting->not_first_logo}}" alt="" height="40px">
+                    <img src="storage/{{$listSetting->not_first_logo}}" alt="" height="40px">
                     @endisset
-                    <div class="d-none col-md-6 d-sm-block float-right edit-label">
+                    <div class="mt-0 d-none d-sm-block float-right edit-label">
 
                         @isset($headerMenu)
                         @foreach($headerMenu as $menu)
@@ -183,12 +183,12 @@
                     </div>
                     <div class="col-lg-5 offset-lg-1 col-md-10 offset-md-1 col-sm-12 col-12 text">
                         <div>
-                            <h3 class="animated fadeInUp center">@isset($listSlide[1]->value->describe){{ $listSlide[1]->value->describe }}@endisset</h3>
+                            <h3 class="animated fadeInUp">@isset($listSlide[1]->value->describe){{ $listSlide[1]->value->describe }}@endisset</h3>
                             @isset($listSlide[1]->value->url_youtube)
                             <iframe width="100%" src="{{ $listSlide[1]->value->url_youtube }}" frameborder="0" class="d-block d-lg-none boder" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen"></iframe>
                             @endisset
 
-                            <p class="animated fadeInUp col-12 col-sm-12 col-md-12">@isset($listSlide[1]->value->content){!! $listSlide[1]->value->content !!}.@endisset</p>
+                            <div class="animated fadeInUp col-12 col-sm-12 col-md-12 contentSecondSlide">@isset($listSlide[1]->value->content){!! $listSlide[1]->value->content !!}@endisset</div>
                         </div>
                     </div>
                 </div>
@@ -295,15 +295,19 @@
                         @endforeach
                         @endisset
                     </div>
-                    <div class="col-12 col-sm-12 col-md-12  control-owl">
-                        <div class="owl-pagination">
-                            @isset($listSlide[4]->value->carousel)
-                            @foreach($listSlide[4]->value->carousel as $key => $carousel)
-                            <div class="owl-page" data-index-page="{{$key + 1}}" style="background-image: url(storage/{{ $carousel->image }})" data-name="{{ $carousel->name }}"></div>
-                            @endforeach
-                            @endisset
+                    @isset($listSlide[4]->value->carousel)
+                        <div class="col-12 col-sm-12 col-md-12  control-owl">
+                            <div class="owl-pagination">
+                                @foreach($listSlide[4]->value->carousel as $key => $carousel)
+                                    <div class="owl-page" data-index-page="{{$key + 1}}" style="background-image: url(storage/{{ $carousel->image }})" data-name="{{ $carousel->name }}"></div>
+                                @endforeach
+                            </div>
+                            <div class="owl-button">
+                                <div class="owl-prev"></div>
+                                <div class="owl-next"></div>
+                            </div>
                         </div>
-                    </div>
+                    @endisset
                 </div>
             </div>
         </div>
@@ -324,18 +328,73 @@
                                     @isset($listSlide[5]->value->image->duoi)
                                     style="background: url(storage/{{ $listSlide[5]->value->image->duoi }}) no-repeat center cover";
                                     @endisset
-                                    ></a>
-                                    @endisset
-                                </div>
+                                ></a>
+                            @endisset
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-7 khoitrai">
+                        <div class="childs-blog">
+                            @isset($listSlide[5]->value->blog)
+                            @foreach($listSlide[5]->value->blog as $key => $blog)
+                            <div class="blog animated fadeInUp">
+                                <h4><a href="{{$blog->link}}}">{{$blog->title}}</a></h4>
+                                <p><i>{{ $blog->content }}</i></p>
                             </div>
-                            <div class="col-12 col-sm-12 col-md-7 khoitrai">
-                                <div class="childs-blog">
-                                    @isset($listSlide[5]->value->blog)
-                                    @foreach($listSlide[5]->value->blog as $key => $blog)
-                                    <div class="blog animated fadeInUp">
-                                        <h4><a href="{{$blog->link}}}">{{$blog->title}}</a></h4>
-                                        <p><i>{{ $blog->content }}</i></p>
-                                    </div>
+                            @endforeach
+                            @endisset
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section" id="section_6">
+            <div class="container">
+                <div class="row content">
+                    <div class="col-md-4 offset-md-4 col-sm-12 col-12 text-center p-0">
+                        @isset($listSlide[6]->value->title)
+                        <h2 class="getNow p-0">{{ $listSlide[6]->value->title }}</h2>
+                        @endisset
+                    </div>
+                    <div class="col-8 offset-2">
+                        <div class="row devices">
+                            @isset($listSlide[6]->value->phone)
+                            @foreach($listSlide[6]->value->phone as $key => $phone)
+                            <div class="col-12 col-sm-12 col-lg-4 text-center">
+                                <a href="{{ $phone->link }}" target="_blank">
+                                    <img src="storage/{{ $phone->image }}" 
+                                    @if($key == 0)
+                                    class="animated fadeInLeft android"
+                                    @elseif($key == 1)
+                                    class="animated fadeIn ios"
+                                    @elseif($key == 2)
+                                    class="animated fadeInRight winphone"
+                                    @endif
+                                    >
+                                </a>
+                            </div>
+                            @endforeach
+                            @endisset
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-6 col-sm-12 col-md-3 col-12">
+                                    @isset($listSetting->address)
+                                    <p class="d-none d-lg-block m-0"><strong>Address:</strong> {{$listSetting->address}} | &nbsp;{{ $listSetting->phone}}</p>
+                                    @endisset
+                                    <p class="m-0">© 2019  Money Lover. All rights reserved.</p>
+                                </div>
+                                <div class="d-none d-md-block col-lg-6 padding-for-chatbox text-right-not-mobile">
+                                    @isset($footerMenu)
+                                    @foreach($footerMenu as $menu)
+                                    <a href="{{ $menu->link }}" class="inPolicy" target="_blank"><strong>{{ $menu->name }}</strong></a>
+                                    @if (! $loop->last && !$loop->first)
+                                    |
+                                    @endif
+                                    @if ($loop->first)
+                                    <br>
+                                    @endif
                                     @endforeach
                                     @endisset
                                 </div>
@@ -343,84 +402,29 @@
                         </div>
                     </div>
                 </div>
-                <div class="section" id="section_6">
-                    <div class="container">
-                        <div class="row content">
-                            <div class="col-md-4 offset-md-4 col-sm-12 col-12 text-center p-0">
-                                @isset($listSlide[6]->value->title)
-                                <h2 class="getNow p-0">{{ $listSlide[6]->value->title }}</h2>
-                                @endisset
-                            </div>
-                            <div class="col-8 offset-2">
-                                <div class="row devices">
-                                    @isset($listSlide[6]->value->phone)
-                                    @foreach($listSlide[6]->value->phone as $key => $phone)
-                                    <div class="col-12 col-sm-12 col-lg-4 text-center">
-                                        <a href="{{ $phone->link }}" target="_blank">
-                                            <img src="storage/{{ $phone->image }}" 
-                                            @if($key == 0)
-                                            class="animated fadeInLeft android"
-                                            @elseif($key == 1)
-                                            class="animated fadeIn ios"
-                                            @elseif($key == 2)
-                                            class="animated fadeInRight winphone"
-                                            @endif
-                                            >
-                                        </a>
-                                    </div>
-                                    @endforeach
-                                    @endisset
-                                </div>
-                            </div>
-                            <div class="footer">
-                                    <div class="container-fluid">
-                                        <div class="row">
-                                            <div class="col-lg-6 col-sm-12 col-md-3 col-12">
-                                                @isset($listSetting->address)
-                                                <p class="d-none d-lg-block m-0"><strong>Address:</strong> {{$listSetting->address}} | &nbsp;{{ $listSetting->phone}}</p>
-                                                @endisset
-                                                <p class="m-0">© 2019  Money Lover. All rights reserved.</p>
-                                            </div>
-                                            <div class="d-none d-md-block col-lg-6 padding-for-chatbox text-right-not-mobile">
-                                                @isset($footerMenu)
-                                                @foreach($footerMenu as $menu)
-                                                <a href="{{ $menu->link }}" class="inPolicy" target="_blank"><strong>{{ $menu->name }}</strong></a>
-                                                @if (! $loop->last && !$loop->first)
-                                                |
-                                                @endif
-                                                @if ($loop->first)
-                                                <br>
-                                                @endif
-                                                @endforeach
-                                                @endisset
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                        </div>
-                    </div>
-                </div>
+            </div>
+        </div>
 
-                <script type="text/javascript" src="bower_components/moneylover-bower/fullpage/fullpage.js"></script>
-                <script type="text/javascript" src="js/app.js"></script>
-                <script type="text/javascript">
-                    $(function(){
-                        if( $(window).width() < 992) {
-                            $('#section_1').addClass('resetHeight');
-                            $('.fp-tableCell').addClass('fitSection');
-                            $('#section_4 .row').children('div');
-                        } else {
-                            $('#section_1').removeClass('resetHeight');
-                            $('.fp-tableCell').removeClass('fitSection');
-                        }
-                    });
-                    $(function(){
-                        if ($(window).width() < 768) {
-                            test = $('#section_5 .row .khoitrai');
-                            test.addClass('hihe')
-                        }
-                    });
+    <script type="text/javascript" src="bower_components/moneylover-bower/fullpage/fullpage.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            if( $(window).width() < 992) {
+                $('#section_1').addClass('resetHeight');
+                $('.fp-tableCell').addClass('fitSection');
+                $('#section_4 .row').children('div');
+            } else {
+                $('#section_1').removeClass('resetHeight');
+                $('.fp-tableCell').removeClass('fitSection');
+            }
+        });
+        $(function(){
+            if ($(window).width() < 768) {
+                test = $('#section_5 .row .khoitrai');
+                test.addClass('hihe')
+            }
+        });
 
-                </script>
-            </body>
-            </html>
+    </script>
+</body>
+</html>

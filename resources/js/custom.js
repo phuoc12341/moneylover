@@ -32,7 +32,6 @@ $( document ).ready(function() {
 
             if (destination.index == 6) {
                 $(".header").find(".notFirstHeader").find("a:last-child").addClass("d-none");
-                console.log($(".header").find(".notFirstHeader").find("a:last-child"))
             } else {
                 $(".header").find(".notFirstHeader").find("a:last-child").removeClass("d-none");
             }
@@ -197,5 +196,4 @@ $( document ).ready(function() {
     $downloadBtn.click(function () {
         fullpage_api.moveTo(7);
     })
-
 });
