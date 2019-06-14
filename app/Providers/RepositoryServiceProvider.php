@@ -10,6 +10,9 @@ class RepositoryServiceProvider extends ServiceProvider
         'social' => [
             \App\Repo\SocialRepositoryInterface::class,
             \App\Repo\SocialRepository::class,
+        ], [
+            \App\Repo\SlideRepositoryInterface::class,
+            \App\Repo\SlideRepository::class,
         ],
     ];
 
