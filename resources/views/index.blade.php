@@ -237,31 +237,31 @@
                         <div class="containDeviceImage">
                             <div class="preview1 animated fadeInRight">
                                 @isset($listSlide[2]->value->file)
-                                <img src="{{ asset(config('app.img_path')) }}/{{$listSlide[2]->value->file}}" alt="">
+                                <img src="{{ asset('storage/' . $listSlide[2]->value->file)}}" alt="">
                                 @endisset
                             </div>
                             <div class="preview2 animated fadeInRight d-none">
                                 @isset($listSlide[2]->value->file_1)
-                                <img src="{{ asset(config('app.img_path')) }}/{{$listSlide[2]->value->file_1[2]->img}}" alt="">
-                                <img src="{{ asset(config('app.img_path')) }}/{{$listSlide[2]->value->file_1[1]->img}}" class="animated flipInX" alt="">
-                                <img src="{{ asset(config('app.img_path')) }}/{{$listSlide[2]->value->file_1[0]->img}}" class="animated flipInX" alt="">
+                                <img src="{{ asset('storage/' . $listSlide[2]->value->file_1[0]) }}" alt="">
+                                <img src="{{ asset('storage/' . $listSlide[2]->value->file_1[1]) }}" class="animated flipInX" alt="">
+                                <img src="{{ asset('storage/' . $listSlide[2]->value->file_1[2]) }}" class="animated flipInX" alt="">
                                 @endisset
                             </div>
 
                             <div class="preview3 animated fadeInRight d-none">
                                 @isset($listSlide[2]->value->file_1)
-                                <img src="{{ asset(config('app.img_path')) }}/{{$listSlide[2]->value->file_1[0]->img}}" alt="">
-                                <img src="{{ asset(config('app.img_path')) }}/{{$listSlide[2]->value->file_2[1]->img}}" alt="">
-                                <img src="{{ asset(config('app.img_path')) }}/{{$listSlide[2]->value->file_2[2]->img}}" alt="">
-                                <img src="{{ asset(config('app.img_path')) }}/{{$listSlide[2]->value->file_2[3]->img}}" alt="">
+                                <img src="{{ asset('storage/' . $listSlide[2]->value->file_2[1]) }}" alt="">
+                                <img src="{{ asset('storage/' . $listSlide[2]->value->file_2[1]) }}" alt="">
+                                <img src="{{ asset('storage/' . $listSlide[2]->value->file_2[3]) }}" alt="">
+                                <img src="{{ asset('storage/' . $listSlide[2]->value->file_2[3]) }}" alt="">
                                 @endisset
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="section" id="section_3">
             <div class="container content">
                 <div class="khoitext " index="1">
@@ -273,7 +273,7 @@
                     @foreach($listSlide[3]->value->slide as $key => $value)    
                     <div class="col-lg-4 col-sm-6 col-6 animated fadeIn">
                         @isset($listSlide[3]->value->slide[$key]->image)
-                        <img src="{{ asset(config('app.img_path')) }}/{{$listSlide[3]->value->slide[$key]->image}}" alt="">
+                        <img src="{{ asset('storage/' . $listSlide[3]->value->slide[$key]->image) }}" alt="">
                         @endisset
                         <h3>{{ $listSlide[3]->value->slide[$key]->describe }}</h3>
                         <p>{{$listSlide[3]->value->slide[$key]->content}}</p>

@@ -71,78 +71,79 @@ class SlideRepository implements SlideRepositoryInterface
 			break;
 
 			case 3:
-	            $slide->value = json_decode($slide->value);
-	            $saveImage = '';
-	            if (isset($slide->value->file)){
-	                $saveImage = $slide->value->file;
-	            }
-	            $allRequestParameter = $request->all();
-	            $allRequestParameter = Arr::except($allRequestParameter, ['_method', '_token', '_key', 'order']);
-	            $allRequestParameter['file'] = $saveImage;
-	            if ($request->hasFile('file')) {
-	                $file = $request->file;
-	                $name = $request->file->getClientOriginalName();
-	                $nameFile = str_random(5).$name;
-	                $file->move(config('app.img_path'), $nameFile);
-	                if (isset($slide->value->file)) {
-	                    unlink(config('app.img_path') . $slide->value->file);
-	                }
-	                $allRequestParameter['file'] = $nameFile;
-	            }
-	            $file_1 = [];
-	            $saveImage_1 = [];
-	            if (isset($slide->value->file_1)) {
-	                $saveImage_1 = $slide->value->file_1;
-	            }
-	            $allRequestParameter['file_1'] = $saveImage_1;
+			$slide->value = json_decode($slide->value);
+			$allRequestParameter = $request->all();
+			$allRequestParameter = Arr::except($allRequestParameter, ['_method', '_token', '_key', 'order', 'key']);
 
-	            if($request->hasFile('file_1')) {
-	                foreach ($request->file('file_1') as $key => $item) {
-	                    $name = $item->getClientOriginalName();
-	                    $newName = str_random(5) . $name;
-	                    $item->move(config('app.img_path'), $newName);
-	                    if (isset($slide->value->file_1)) {
-	                        foreach ($slide->value->file_1 as $item) {
-	                            if (isset($item->img)) {
-	                                unlink(config('app.img_path') . $item->img);
-	                            }
-	                        }
-	                        $file_1[] = ['img' => $newName];
-	                    }
-	                }
-	            }
-	            $allRequestParameter['file_1'] = array_replace($saveImage_1, $file_1);
-	            $file_2 = [];
-	            $saveImage_2 = [];
-	            if (isset($slide->value->file_2)) {
-	                $saveImage_2 = $slide->value->file_2;
-	            }
-	            $allRequestParameter['file_2'] = $saveImage_2;
-	            if($request->hasFile('file_2')) {
-	                foreach ($request->file('file_2') as $item) {
-	                    $name = $item->getClientOriginalName();
-	                    $newName = str_random(5) . $name;
-	                    $item->move(config('app.img_path'), $newName);
-	                    if (isset($slide->value->file_2)) {
-	                        foreach ($slide->value->file_2 as $key => $item) {
-	                            if (isset($item->img)) {
-	                                unlink(config('app.img_path') . $item->img);
-	                            }
-	                        }
-	                        $file_2[] = ['img' => $newName];
-	                    }
-	                }
-	            }
-	            $allRequestParameter['file_2'] = array_replace($saveImage_2, $file_2);
-	            $allRequestParameter = Arr::except($allRequestParameter, ['_method', '_token', '_key', 'order']);
-	            
-	            break ;
+			if (isset($slide->value->file)){
+				$allRequestParameter['file'] = $slide->value->file;
+			}
+			if ($request->hasFile('file')) {
+				if ($request->file->isValid()) {
+					$path = $request->file->store(config('custom.file_storage.upload_path'));
+					$path = str_replace('public/', '', $path);
+					if (isset($slide->value->file)) {
+						Storage::delete('public/' . $slide->value->file);
+					}
+				}
+				$allRequestParameter['file'] = $path;
+			}
+
+			if (isset($slide->value->file_1)) {
+				foreach ($slide->value->file_1 as $key => $value) {
+					// dd($value);
+					if (isset($slide->value->file_1[$key])) {
+			// dd($value->file_1[$key]);
+						$allRequestParameter['file_1'][$key] = $value;
+					}
+				}
+			}
+			$allFileRequest = $request->allFiles();
+// dd($allFileRequest['file_1']);
+			if (!empty($allFileRequest['file_1'])) {
+				foreach ($allFileRequest['file_1']  as $key => $item) {	
+					if ($item->isValid()) {
+						$path = $item->store(config('custom.file_storage.upload_path'));
+						$path = str_replace('public/', '', $path);
+						// dd($slide->value->file_1[$key]);
+						if (isset($slide->value->file_1[$key])) {
+							Storage::delete('public/' . $slide->value->file_1[$key]);
+						}
+
+						$allRequestParameter['file_1'][$key] = $path;
+					}
+				}
+			}
+
+			if (isset($slide->value->file_2)) {
+				foreach ($slide->value->file_2 as $key => $value) {
+					if (isset($slide->value->file_2[$key])) {
+						$allRequestParameter['file_2'][$key] = $value;
+					}
+				}
+			}
+
+			$allFileRequest = $request->allFiles();
+			if (!empty($allFileRequest['file_2'])) {
+				foreach ($allFileRequest['file_2']  as $key => $item) {
+					if ($item->isValid()) {
+						$path = $item->store(config('custom.file_storage.upload_path'));
+						$path = str_replace('public/', '', $path);
+						if (isset($slide->value->file_2[$key])) {
+							Storage::delete('public/' . $slide->value->file_2[$key]);
+						}
+
+						$allRequestParameter['file_2'][$key] = $path;
+					}
+				}
+			}
+
+			break ;
 
 			case 4:
 			$allRequestParameter = $request->all();
 			$allRequestParameter = Arr::except($allRequestParameter, ['_method', '_token', '_key', 'order', 'key']);
 			$slide->value = json_decode($slide->value);
-			$image = [];
 
 			if (isset($slide->value->slide)) {
 				foreach ($slide->value->slide as $key => $value) {
@@ -153,15 +154,17 @@ class SlideRepository implements SlideRepositoryInterface
 			}
 
 			$allFileRequest = $request->allFiles();
-			if (isset($allFileRequest['slide'])) {
+			if (!empty($allFileRequest['slide'])) {
 				foreach ($allFileRequest['slide']  as $key => $item) {
-					$name = $item['image']->getClientOriginalName();
-					$newName = uniqid() . '.' . $name;
-					$item['image'] -> move(config('app.img_path'), $newName);
-					if (isset($slide->value->file)) {
-						unlink(config('app.img_path') . $slide->value->file);
+					if ($item['image']->isValid()) {
+						$path = $item['image']->store(config('custom.file_storage.upload_path'));
+						$path = str_replace('public/', '', $path);
+						if (isset($slide->value->slide[$key]->image)) {
+							Storage::delete('public/' . $slide->value->slide[$key]->image);
+						}
+
+						$allRequestParameter['slide'][$key]['image'] = $path;
 					}
-					$allRequestParameter['slide'][$key]['image'] = $newName;
 				}
 			}
 			break;
@@ -170,6 +173,7 @@ class SlideRepository implements SlideRepositoryInterface
 			$slide->value = json_decode($slide->value);
 			$allRequestParameter = $request->all();
 			$allRequestParameter = Arr::except($allRequestParameter, ['_method', '_token', '_key', 'order','key']);
+
 			if (isset($slide->value->carousel)) {
 				foreach ($slide->value->carousel as $key => $carousel) {
 					if (isset($carousel->image)) {
@@ -177,7 +181,6 @@ class SlideRepository implements SlideRepositoryInterface
 					}
 				}
 			}
-
 			$allImageRequest = $request->allFiles();
 
 			if (!empty($allImageRequest)) {
