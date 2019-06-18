@@ -50,7 +50,7 @@ class UpdateSlideRequest extends FormRequest
             return [
                 'describe_1' => 'required|min:5|max:256',
                 'content_1' => 'required|min:10|max:512',
-                'file' => 'image|max:2048',
+                'file.*.image' => 'image|max:2048',
                 'describe_2' => 'required|min:5|max:256',
                 'content_2' => 'required|min:10|max:512',
                 'file_1.*' => 'image|max:2048',
