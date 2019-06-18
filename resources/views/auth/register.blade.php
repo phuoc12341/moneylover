@@ -1,7 +1,17 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login V1</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="{{ asset('/') }}" />
 
-@section('content')
-<div class="container">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -74,4 +84,9 @@
         </div>
     </div>
 </div>
-@endsection
+
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
+</body>
+</html>
+
