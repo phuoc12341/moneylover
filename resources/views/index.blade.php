@@ -194,7 +194,8 @@
                 </div>
             </div>
         </div>
-        <div class="section" id="section_2">
+
+         <div class="section" id="section_2">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 content">
@@ -254,6 +255,7 @@
                                 <img src="{{ asset('storage/' . $listSlide[2]->value->file_2[1]) }}" alt="">
                                 <img src="{{ asset('storage/' . $listSlide[2]->value->file_2[3]) }}" alt="">
                                 <img src="{{ asset('storage/' . $listSlide[2]->value->file_2[3]) }}" alt="">
+
                                 @endisset
                             </div>
                         </div>
