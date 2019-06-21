@@ -40,26 +40,6 @@ class SocialControllerTest extends TestCase
         $this->assertTrue(true);
     }
 
-    public function testListSocial()
-    {
-        $request = new Request();
-
-        $listSocial = factory(Social::class, 3)->make();
-
-        $this->socialRepository->shouldReceive('getListSocial')
-            ->once()
-            ->andReturn($listSocial);
-
-        $socialController = new SocialController($this->socialRepository);
-
-        $view = $socialController->index($request);
-        $this->assertEquals('socials.index', $view->getName());
-        $this->assertArraySubset([
-            'listSocial' => $listSocial,
-        ], $view->getData());
-
-    }
-
     public function testUpdateFirstSlide()
     {
         $request = new UpdateSlideRequest();

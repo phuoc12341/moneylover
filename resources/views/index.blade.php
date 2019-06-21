@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 </head>
 <body>
-    <div id="app"></div>
     <div class="header">
         <div class="container">
             <div class="row">
@@ -115,7 +114,7 @@
             <span class="iconclosevideo"></span>
         </button>
     </div>
-    {{-- {{dd($listSlide[0]->value)}} --}}
+
     <div id="fullpage">
         <div class="section" id="section_0">
             <div id="slide_1">
@@ -406,6 +405,7 @@
                 </div>
             </div>
         </div>
+    </div>
 
     <script type="text/javascript" src="bower_components/moneylover-bower/fullpage/fullpage.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
