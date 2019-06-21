@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('style')
-
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
 @endsection
 
 @section('content')
@@ -113,7 +113,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                         <form action="{{ route('menu.destroy', ['id' => '']) }}" method="POST">
-                            @method('DELETE')   
+                            @method('DELETE')
                             @csrf
                             <button class="btn btn-danger" type="submit">Yes</button>
                         </form>
@@ -142,5 +142,6 @@
             });
         });
     </script>
-@endsection
 
+    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+@endsection

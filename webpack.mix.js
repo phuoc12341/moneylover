@@ -1,3 +1,4 @@
+
 const mix = require('laravel-mix');
 const webpack = require('webpack');
 
@@ -28,4 +29,5 @@ mix.webpackConfig({
         }),
     ],
 });
+
 mix.copyDirectory('resources/sass/style.css', 'public/css/style.css');
