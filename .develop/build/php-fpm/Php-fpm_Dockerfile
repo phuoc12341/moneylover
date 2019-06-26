@@ -1,7 +1,7 @@
 FROM php:7.2.16-fpm-stretch
 
 # Set working directory
-WORKDIR /var/www/html/blog
+WORKDIR /var/www/html/moneylover
 
 RUN apt-get update && \
     apt-get install software-properties-common -y && \

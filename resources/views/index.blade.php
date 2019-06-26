@@ -9,111 +9,18 @@
     <link rel="stylesheet" type="text/css" href="css/app.css"/>
     <link rel="stylesheet" type="text/css" href="bower_components/moneylover-bower/animate.css"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+    <script>
+        window.listSlide = {!! $listSlide !!}
+        window.footerMenu = {!! $footerMenu !!}
+        window.headerMenu = {!! $headerMenu !!}
+        window.listSocial = {!! $listSocial !!}
+        window.listSetting = {!! $listSetting !!}
+    </script>
 </head>
 <body>
-    <div class="header">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 firstHeader">
-                    @isset($listSetting->first_logo)
-                    <img src="storage/{{$listSetting->first_logo}}" height="40px">
-                    @endisset
-                    <div class="dropdown float-right d-none d-lg-block" id="languege">
-                        <button class="btn btn-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            English
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">English</a>
-                            <a class="dropdown-item" href="#">Tiếng việt</a>
-                        </div>
-                    </div>
-                    <button class="btn languege-for-mobile d-block d-lg-none float-right" type="button" data-toggle="modal" data-target="#languageModal">English <span class="caret"></span>
-                    </button>
-                </div>
-                <div class="col-sm-12 notFirstHeader">
-                    @isset($listSetting->not_first_logo)
-                    <img src="storage/{{$listSetting->not_first_logo}}" alt="" height="40px">
-                    @endisset
-                    <div class="mt-0 d-none d-sm-block float-right edit-label">
 
-                        @isset($headerMenu)
-                        @foreach($headerMenu as $menu)
-                        @php
-                        $baseCurrentURL = Request::url();
-                        $isCurrentPage = strpos($menu->link, $baseCurrentURL);
-                        if ($isCurrentPage === 0) {
-                        $isCurrentPage = true;
-                    }
-                    @endphp
-                    <a href="{{ $menu->link }}"
-                        @if (!$isCurrentPage)
-                        target="_blank"
-                        @endif
-
-                        @if (!$loop->last)
-                        class="btn btn-primary btn-lg mr-3"
-                        @else
-                        class="btn btn-primary btn-lg"
-                        @endif
-                        >{{ $menu->name }}</a>
-                        @endforeach
-                        @endisset
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="languageModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm languageModal col-12" >
-            <div class="modal-content  animated flipInX">
-                <div class="control">
-                    <input type="radio" name="inlineRadioOptions" checked="checked"> 
-                    <a href="">
-                        <label>English</label>
-                    </a>
-                    <img src="images/flag_en.png" alt="nglish" height="24px" class="pull-right">
-                </div>
-                <div class="control">
-                    <input type="radio" name="inlineRadioOptions">
-                    <a href="">
-                        <label>Tiếng Việt</label>
-                    </a>
-                    <img src="images/flag_vi.png" alt="nglish" height="24px" class="pull-right">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="slide-indicators animated fadeIn d-none d-lg-block">
-        <ol>
-            <li data-slide-to="0" class="active"></li>
-            <li data-slide-to="1"></li>
-            <li data-slide-to="2"></li>
-            <li data-slide-to="3"></li>
-            <li data-slide-to="4"></li>
-            <li data-slide-to="5"></li>
-            <li data-slide-to="6"></li>
-        </ol>
-    </div>
-    <div class="listSocial d-none d-lg-block">
-        <ol>
-            @foreach ($listSocial as $item)
-            <li class="animated fadeInLeft"><a href="{{ $item->url }}" target="_blank"><i class="{{$item->icon}}"></i></a></li>
-            @endforeach
-        </ol>
-    </div>
-
-    <div id="video">
-        <div>
-            @isset( $listSlide[1]->value->url_youtube)
-            <iframe class="animated zoomIn" width="640" height="360" src="{{ $listSlide[1]->value->url_youtube }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            @endisset
-        </div>
-        <button class="close">
-            <span class="iconclosevideo"></span>
-        </button>
-    </div>
+    <div id="app"></div>
 
     <div id="fullpage">
         <div class="section" id="section_0">

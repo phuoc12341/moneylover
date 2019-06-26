@@ -554,6 +554,10 @@
   display: flex;
 }
 
+.header .notFirstHeader a:nth-last-child(1) {
+  margin-right: 0px !important;
+}
+
 #section_2 {
   background-image: url("../images/pattern1.png");
   background-repeat: repeat;
