@@ -30,7 +30,7 @@ class SettingRequest extends FormRequest
             'address' => 'required|min:5|max:255',
             'first_logo' => 'image|max:2048',
             'not_first_logo' => 'image|max:2048',
-        ];
+        ];;
     }
 
     public function messages()
