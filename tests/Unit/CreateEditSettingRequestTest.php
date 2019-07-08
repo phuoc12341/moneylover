@@ -73,7 +73,7 @@ class CreateEditSocialRequestTest extends TestCase
     public function testCreateSocialWithUrlHasBeenExisted()
     {
         $socialExisted = Social::all()->first();
-
+// dd($socialExisted->url);
         $data = [
             'url' => $socialExisted->url,
             'icon' => 'gsdfgsdf',
@@ -88,9 +88,11 @@ class CreateEditSocialRequestTest extends TestCase
         $request->setJson(new ParameterBag($data));
         try {
             $request->validateResolved();
+        // dd('fsdf');
         } catch(ValidationException $e) {
             $errorMessage = Arr::get($e->errors(), 'url.0');
-            $this->assertSame($errorMessage, __('validation.unique', ['attribute' => 'url']));
+            // dd($e->errors());
+            $this->assertSame($errorMessage, __('validation.url', ['attribute' => 'url']));
         }
     }
 
@@ -223,7 +225,7 @@ class CreateEditSocialRequestTest extends TestCase
             $request->validateResolved();
         } catch(ValidationException $e) {
             $errorMessage = Arr::get($e->errors(), 'url.0');
-            $this->assertSame($errorMessage, __('validation.unique', ['attribute' => 'url']));
+            $this->assertSame($errorMessage,  __('validation.url', ['attribute' => 'url']));
         }
     }
 

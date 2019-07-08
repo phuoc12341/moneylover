@@ -25,7 +25,12 @@ class UpdateMenuRequest extends FormRequest
      */
     public function rules()
     {
-        $idMenu = Arr::get($this->route()->parameters(), 'menu');
+        $idMenu = 5;
+        if (!is_null($this->route())) {
+
+            $idMenu = Arr::get($this->route()->parameters(), 'menu');
+        }
+
 
         return [
             'name' => 'bail|required|unique:menus,name,' . $idMenu . '|max:255',

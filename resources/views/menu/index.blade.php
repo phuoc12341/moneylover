@@ -1,9 +1,7 @@
 @extends('layouts.app')
-
 @section('style')
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
 @endsection
-
 @section('content')
         <div class="row">
         <div class="col-lg-12">

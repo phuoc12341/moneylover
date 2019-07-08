@@ -8,5 +8,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Menu extends Model
 {
-    use SoftDeletes;
+	use SoftDeletes;
+
+	protected $guarded = ['id'];
+
+	protected $fillable = [
+		'name',
+		'link',
+		'type',
+		'order',
+	];
 }

@@ -13,10 +13,20 @@
 
 Route::get('/', 'IndexController@index');
 
-Route::resource('setting', 'SettingController');
-Route::resource('social', 'SocialController');
-Route::resource('menu', 'MenuController');
-Route::resource('slide', 'SlideController');
+Route::group(['prefix' => 'admin', 'middleware' => 'admin.login'], function () {
+
+	Route::resource('setting', 'SettingController');
+	Route::resource('social', 'SocialController');
+	Route::resource('menu', 'MenuController');
+	Route::resource('slide', 'SlideController');
+	Route::resource('users', 'UserController');
+	Route::resource('roles', 'RoleController');
+	Route::post('role/set-role/{user}', 'RoleController@setRole')->name('role.set_role');
+	Route::get('permission', 'RoleController@getIndex')->name('permission.index');
+	Route::get('permission/create', 'RoleController@createPermission')->name('permission.create');
+	Route::post('permission/store', 'RoleController@storePermission')->name('permission.store');
+	Route::post('permission/set-permission', 'RoleController@setPermission')->name('permission.set_permission');
+});
 
 Auth::routes();
 

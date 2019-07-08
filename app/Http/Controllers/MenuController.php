@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Models\Menu;
 use App\Http\Requests\Menu\CreateMenuRequest;
 use App\Http\Requests\Menu\UpdateMenuRequest;
+use App\Repo\MenuRepository;
 
 class MenuController extends Controller
 {
@@ -15,9 +15,14 @@ class MenuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(MenuRepository $menuRepository)
+    {
+        $this->menuRepository = $menuRepository;
+    }
+
     public function index()
     {
-        $listMenu = Menu::all();
+        $listMenu = $this->menuRepository->getList();
 
         $compact = [
             'listMenu' => $listMenu,
@@ -33,6 +38,7 @@ class MenuController extends Controller
      */
     public function create()
     {
+        $this->authorize('create-menu');
         return view('menu.create');
     }
 
@@ -44,15 +50,10 @@ class MenuController extends Controller
      */
     public function store(CreateMenuRequest $request)
     {
-        $menu = new Menu;
-        $menu->name = $request->name;
-        $menu->link = $request->link;
-        $menu->type = $request->type;
-        if (isset($request->order)) {
-            $menu->order = $request->order;
-        }
-
-        $menu->save();
+        $this->authorize('create-menu');
+        // if (!\Auth::user()->can('create', \App\Models\Menu::class))
+        //     abort(403);
+        $this->menuRepository->create($request->all());
 
         return redirect()->route('menu.index')->with('success', __('messages.success_create_menu'));
     }
@@ -63,9 +64,9 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Menu $menu)
     {
-        //
+        $this->authorize('show', $menu);
     }
 
     /**
@@ -74,9 +75,11 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Menu $menu)
     {
-        $menu = Menu::find($id);
+         $this->authorize('update', $menu);
+
+        $menu = $this->menuRepository->getViewEdit($menu);
 
         return view('menu.edit', ['menu' => $menu]);
     }
@@ -90,16 +93,7 @@ class MenuController extends Controller
      */
     public function update(UpdateMenuRequest $request, $id)
     {
-        $menu = Menu::find($id);
-        $menu->name = $request->name;
-        $menu->link = $request->link;
-        $menu->type = $request->type;
-
-        if (isset($request->order)) {
-            $menu->order = $request->order;
-        }
-        
-        $menu->save();
+        $this->menuRepository->updateMenu($request->all(), $id);
 
         return redirect()->back()->with('success', __('messages.success_update_menu'));
     }
@@ -112,8 +106,7 @@ class MenuController extends Controller
      */
     public function destroy($id)
     {
-        $menu = Menu::find($id);
-        $menu->delete();
+        $menu = $this->menuRepository->deleteMenu($id);
 
         return redirect()->back()->with('success', __('messages.success_delete_menu'));
     }

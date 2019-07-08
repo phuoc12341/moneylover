@@ -44,12 +44,12 @@ class SocialControllerTest extends TestCase
     public function testListSocial()
     {
         $request = new Request();
-
-        $listSocial = factory(Social::class, 3)->make();
+    
+        $listSocial = factory(Social::class, 3)->create();
 
         $this->socialRepository->shouldReceive('getListSocial')
-            ->once()
-            ->andReturn($listSocial);
+        ->once()
+        ->andReturn($listSocial);
 
         $socialController = new SocialController($this->socialRepository);
 
@@ -73,8 +73,8 @@ class SocialControllerTest extends TestCase
         $request->setJson(new ParameterBag($data));
 
         $this->socialRepository->shouldReceive('createNewSocial')
-            ->once()
-            ->andReturn(true);
+        ->once()
+        ->andReturn(true);
 
         $socialController = new SocialController($this->socialRepository);
         $redirectResponse = $socialController->store($request);
@@ -100,8 +100,8 @@ class SocialControllerTest extends TestCase
         $id = '1';
         
         $this->socialRepository->shouldReceive('showFormEditSocial')
-            ->once()
-            ->andReturn($socialWantEdit);
+        ->once()
+        ->andReturn($socialWantEdit);
 
         $socialController = new SocialController($this->socialRepository);
         $view = $socialController->edit($id, $request);
@@ -126,8 +126,8 @@ class SocialControllerTest extends TestCase
         $request->setJson(new ParameterBag($data));
         
         $this->socialRepository->shouldReceive('updateSocial')
-            ->once()
-            ->andReturn(true);
+        ->once()
+        ->andReturn(true);
 
         $socialController = new SocialController($this->socialRepository);
         $redirectResponse = $socialController->update($request, $id);
@@ -143,8 +143,8 @@ class SocialControllerTest extends TestCase
         $id = '1';
 
         $this->socialRepository->shouldReceive('deleteSocial')
-            ->once()
-            ->andReturn(true);
+        ->once()
+        ->andReturn(true);
 
         $socialController = new SocialController($this->socialRepository);
         $redirectResponse = $socialController->destroy($request, $id);

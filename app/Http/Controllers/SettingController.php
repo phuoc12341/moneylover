@@ -6,17 +6,24 @@ use Illuminate\Http\Request;
 use App\Http\Requests\SettingRequest;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Storage;
+use App\Repo\SettingRepository;
 
 class SettingController extends Controller
 {
+    protected $settingRepository;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(SettingRepository $settingRepository)
+    {
+        $this->settingRepository = $settingRepository;
+    }
+
     public function index()
     {
-        $listSetting = Setting::all();
+        $listSetting = $this->settingRepository->getList();
         $compact = [
             'listSetting' => $listSetting
         ];
@@ -44,44 +51,7 @@ class SettingController extends Controller
     {
         // $setting = Setting::find(1);
         // if (is_null($setting)) {
-        $setting = new Setting;
-        // }
-
-        $setting->site_name = $request->site_name;
-        $setting->email = $request->email;
-        $setting->phone = $request->phone;
-        $setting->address = $request->address;
-
-        if ($request->hasFile('first_logo')) {
-            if ($request->file('first_logo')->isValid()) {
-                $image = $request->file('first_logo');
-                $path = $image->store(config('custom.file_storage.upload_path'));
-                $path = str_replace('public/', '', $path);
-
-                if ($setting->first_logo != '' && $setting->first_logo != null) {
-                    Storage::delete($setting->first_logo);
-                }
-
-                $setting->first_logo = $path;      
-            }
-        };
-
-
-        if ($request->hasFile('not_first_logo')) {
-            if ($request->file('not_first_logo')->isValid()) {
-                $image_logo2 = $request->file('not_first_logo');
-                $path = $image_logo2->store(config('custom.file_storage.upload_path'));
-                $path = str_replace('public/', '', $path);
-
-                if ($setting->logo != '' && $setting->logo != null) {
-                    Storage::delete($setting->not_first_logo);
-                }
-                
-                $setting->not_first_logo = $path;      
-            }
-        };
-        
-        $setting->save();
+        $this->settingRepository->create($request);
 
         return redirect(route('setting.index'));
     }
@@ -105,7 +75,7 @@ class SettingController extends Controller
      */
     public function edit($id)
     {
-        $setting = Setting::findOrFail($id);
+        $setting = $this->settingRepository->edit($id);
         // dd($setting);
         return view('setting.update_or_create', compact('setting'));
         // dd($setting);
@@ -118,43 +88,9 @@ class SettingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SettingRequest $request, $id)
     {
-        $setting = Setting::findOrFail($id);
-
-        $setting->site_name = $request->site_name;
-        $setting->email = $request->email;
-        $setting->phone = $request->phone;
-        $setting->address = $request->address;
-        if ($request->hasFile('first_logo')) {
-            if ($request->file('first_logo')->isValid()) {
-                $image_logo = $request->file('first_logo');
-                if ($setting->first_logo != '' && $setting->first_logo != null) {
-                    Storage::delete($setting->first_logo);
-                }
-
-                $path = $image_logo->store(config('custom.file_storage.upload_path'));
-                $path = str_replace('public/', '', $path);
-                $setting->first_logo = $path;      
-            }
-        };
-
-        if ($request->hasFile('not_first_logo')) {
-            if ($request->file('not_first_logo')->isValid()) {
-                $image_logo2 = $request->file('not_first_logo');
-                if ($setting->not_first_logo != '' && $setting->not_first_logo != null) {
-                    Storage::delete($setting->not_first_logo);
-                }
-
-                $path = $image_logo2->store(config('custom.file_storage.upload_path'));
-                $path = str_replace('public/', '', $path);
-                $setting->not_first_logo = $path;      
-            }
-        };
-        $setting->save();
-
-
-
+        $setting = $this->settingRepository->update($request, $id);
         return redirect()->route('setting.index')->with('success', 'sửa setting thành công');
     }
 
@@ -166,9 +102,7 @@ class SettingController extends Controller
      */
     public function destroy($id)
     {
-        $setting = Setting::find($id);
-        $setting->delete();
-
+        $setting = $this->settingRepository->delete($id);
         return redirect()->back()->with('success', __('messages.success_delete_setting'));
     }
 }

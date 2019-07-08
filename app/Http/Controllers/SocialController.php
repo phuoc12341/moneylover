@@ -45,6 +45,7 @@ class SocialController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Social::class);
         return view('socials.create');
     }
 
@@ -107,6 +108,7 @@ class SocialController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('delete_social', Social::class);
         $this->socialRepository->deleteSocial($id);
 
         return redirect()->back()->with('success', __('messages.success_delete_social'));

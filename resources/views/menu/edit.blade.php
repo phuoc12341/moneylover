@@ -39,7 +39,7 @@
                 </div>
 
                 <!--begin::Form-->
-                <form class="m-form" action="{{ route('menu.update', ['id' => $menu->id]) }}" method="POST">
+                <form class="m-form" action="{{ route('menu.update', $menu->id) }}" method="POST">
                     @method('PUT')
                     @csrf
                     <div class="m-portlet__body">
