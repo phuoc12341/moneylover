@@ -16,3 +16,4 @@ yarn-error.log
 /public/mix-manifest.json
 /upload/images
 /public/upload
+.idea
